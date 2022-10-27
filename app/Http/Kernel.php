@@ -4,6 +4,9 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+use App\Http\Middleware\AdminAccess;
+use App\Http\Middleware\UserAccess;
+
 class Kernel extends HttpKernel
 {
     /**

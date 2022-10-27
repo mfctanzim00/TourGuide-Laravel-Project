@@ -25,9 +25,9 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                    @if (Auth::user()::role->id==1)
+                    @if (Auth::user()->role->id==1)
                         <a href="{{ route('admin.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @elseif (Auth::user()::role->id==2)
+                    @elseif (Auth::user()->role->id==2)
                         <a href="{{ route('user.dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else 
                         null
