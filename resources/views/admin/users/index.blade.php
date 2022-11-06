@@ -43,7 +43,9 @@
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Name</th>
+                                            <th>Role</th>
                                             <th>User ID</th>
                                             <th>Email</th>
                                             <th>Created At</th>
@@ -52,12 +54,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($users as $key => $user)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>user123</td>
-                                            <td>user@user.com</td>
-                                            <td>12/12/12</td>
-                                            <td>12/12/12</td>
+                                            <td>{{ $key+1 }}</td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->role->id }}</td>
+                                            <td>{{ $user->userid }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>{{ $user->created_at }}</td>
+                                            <td>{{ $user->updated_at }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#viewModal">
                                                     <i class="fa fa-eye"></i>
@@ -72,6 +77,7 @@
                                                 </button>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

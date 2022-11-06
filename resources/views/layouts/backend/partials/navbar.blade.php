@@ -18,7 +18,7 @@
                     </li>
                     <h3 class="menu-title">CMS</h3><!-- /.menu-title -->
                     <li class="active">
-                        <a href="{{ url('admin/users') }}"> 
+                        <a href="{{ route('admin.user.index') }}"> 
                             <i class="menu-icon fa fa-user"></i>Users 
                         </a>
                     </li>
