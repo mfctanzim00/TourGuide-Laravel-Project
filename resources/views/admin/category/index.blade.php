@@ -34,7 +34,18 @@
         <div class="content mt-3">
             <div class="animated fadeIn">
                 <div class="row">
-
+                    <div class="col-md-12">
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                            <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                                <span class="badge badge-pill badge-danger">Error</span> {{$error}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        @endif
+                    </div>
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -141,34 +152,41 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{$category->name}}</p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label class=" form-control-label">Name</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <p class="form-control-static">{{$category->name}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label class=" form-control-label">Slug</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <p class="form-control-static">{{$category->slug}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label class=" form-control-label">Created At</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <p class="form-control-static">{{$category->created_at}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label class=" form-control-label">Updated At</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <p class="form-control-static">{{$category->updated_at}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label class=" form-control-label">Description</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <p class="form-control-static">{{$category->description}}</p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Slug</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{$category->slug}}</p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Created At</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{$category->created_at}}</p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Updated At</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{$category->updated_at}}</p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label class=" form-control-label">Description</label></div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{$category->description}}</p>
+                                    <div class="col-sm-6">
+                                        <img src="{{ asset('storage/category/'.$category->image) }}" alt="{{ $category->image }}">
                                     </div>
                                 </div>
                             </div>
@@ -226,21 +244,21 @@
                     <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticModalLabel">Delete User</h5>
+                                <h5 class="modal-title" id="staticModalLabel">Delete Category</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <p>
-                                    The User will be deleted !!
+                                    The category will be deleted !!
                                 </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" onclick="event.preventDefault();
-                                                     document.getElementById('deleteUser-{{ $category->id }}').submit();">Confirm</button>
-                                <form action="{{ route('admin.category.destroy', $category->id) }}" style="display: none" id="deleteUser-{{ $category->id }}" method="POST">
+                                                     document.getElementById('deletecategory-{{ $category->id }}').submit();">Confirm</button>
+                                <form action="{{ route('admin.category.destroy', $category->id) }}" style="display: none" id="deletecategory-{{ $category->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 </form>

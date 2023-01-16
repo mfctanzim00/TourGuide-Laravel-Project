@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -40,15 +41,25 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:categories',
             'description' => 'sometimes|max:1000',
+            'image' => 'required|image|mimes:jpg,png,bmp,jpeg'
         ]);
+        // Image
+        $image = $request->image;
+        $imageName = Str::slug($request->name, '-'). uniqid(). '.'. $image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('category')){
+            Storage::disk('public')->makeDirectory('category');
+        }
+        // store
+        $image->storeAs('category', $imageName, 'public');
 
         $category = new Category();
         $category->name = $request->name;
         $category->slug = Str::slug($request->name, '-');
         $category->description = $request->description;
-        $category->image = 'default.jpg';
+        $category->image = $imageName;
         $category->save();
         Toastr::success('Category created successfully.');
         return redirect()->back();
@@ -85,18 +96,48 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'description' => 'sometimes|max:1000',
-        ]);
+        if($request->name == Category::findorFail($id)->name){
+            $this->validate($request, [
+                'name' => 'required|max:255',
+                'description' => 'sometimes|max:1000',
+                'image' => 'sometimes|image|mimes:jpg,bmp,png,jpeg'
+            ]);
+        }
+        else {
+            $this->validate($request, [
+                'name' => 'required|max:255|unique:categories',
+                'description' => 'sometimes|max:1000',
+                'image' => 'sometimes|image|mimes:jpg,bmp,png,jpeg'
+            ]);
+        }
 
         $category = Category::findorFail($id);
+
+        if($request->image != NULL){
+            // Image
+            $image = $request->image;
+            $imageName = Str::slug($request->name, '-'). uniqid(). '.'. $image->getClientOriginalExtension();
+ 
+            if(!Storage::disk('public')->exists('category')){
+                Storage::disk('public')->makeDirectory('category');
+            }
+            // Delete old image
+            if(Storage::disk('public')->exists('category/'. $category->image)){
+                Storage::disk('public')->delete('category/'. $category->image);
+            }
+            // store
+            $image->storeAs('category', $imageName, 'public');
+        }
+        else {
+            $imageName = $category->image;
+        }
+
         $category->name = $request->name;
         $category->slug = Str::slug($request->name, '-');
         $category->description = $request->description;
-        $category->image = 'default.jpg';
+        $category->image = $imageName;
         $category->save();
-        Toastr::success('Category created successfully.');
+        Toastr::success('Category updated successfully.');
         return redirect()->back();
     }
 
@@ -108,6 +149,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findorFail($id);
+        Storage::disk('public')->delete('category/'. $category->image);
+        $category->delete();
+        Toastr::success('Category deleted successfully.');
+        return redirect()->back();
     }
 }
