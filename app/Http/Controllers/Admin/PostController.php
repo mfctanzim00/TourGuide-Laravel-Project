@@ -9,6 +9,11 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Carbon\Carbon;
+use Auth;
+use Brian2694\Toastr\Facades\Toastr;
+
+
 
 class PostController extends Controller
 {
@@ -65,6 +70,23 @@ class PostController extends Controller
             $constraint->aspectRatio();
             $constraint->upsize();
         })->stream();
+
+        Storage::disk('public')->put('post/'. $imageName, $img);
+
+        $post = new Post();
+        $post->title = $request->title;
+        $post->user_id = Auth::id();
+        $post->category_id = $request->category;
+        $post->slug = $slug;
+        $post->image = $imageName;
+        $post->body = $request->body;
+        if(isset($request->status)){
+            $post->status = 1;
+        }
+        $post->save();
+        Toastr::success('Post Successfully Saved.', 'success');
+
+        return redirect()->route('admin.post.index');
     }
 
     /**
@@ -75,7 +97,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.post.show', compact('post'));
     }
 
     /**
@@ -86,7 +109,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.post.edit', compact('post', 'categories'));
     }
 
     /**
@@ -98,8 +123,68 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->title == Post::findOrFail($id)->title){
+            $this->validate($request, [
+                'title' => 'required|max:255',
+                'image' => 'sometimes|mimes:jpg,png,bmp,jpeg',
+                'category' => 'required',
+                'tags' => 'required',
+                'body' => 'required',
+            ]);
+        }
+        else {
+            $this->validate($request, [
+                'title' => 'required|max:255|unique:posts',
+                'image' => 'sometimes|mimes:jpg,png,bmp,jpeg',
+                'category' => 'required',
+                'tags' => 'required',
+                'body' => 'required',
+            ]);
+        }
+        $post = Post::findOrFail($id);
+        $slug = Str::slug($request->title, '-');
+
+        if(isset($request->image)){
+            $image = $request->image;
+            $imageName = $slug. '-'. uniqid(). Carbon::now()->timestamp. '.'. $image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('post')){
+                Storage::disk('public')->makeDirectory('post');
+            }
+
+            // Delete Old Image
+            if(Storage::disk('public')->exists('post/'. $post->image)){
+                Storage::disk('public')->delete('post/'. $post->image);
+            }
+            $postImage = Image::make($image)->resize(752, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->stream();
+
+            // Store in public/post
+            Storage::disk('public')->put('post/'. $imageName, $postImage);
+        }
+        else {
+            $imageName = $post->image;
+        }
+        $post->user_id = Auth::id();
+        $post->category_id = $request->category;
+        $post->title = $request->title;
+        $post->slug = $slug;
+        $post->image = $imageName;
+        $post->body = $request->body;
+        if(isset($request->status)){
+            $post->status = true;
+        }
+        else {
+            $post->status = false;
+        }
+        $post->save();
+        Toastr::success('Post Successfully Saved.', 'success');
+
+        return redirect()->route('admin.post.index');
     }
+        
 
     /**
      * Remove the specified resource from storage.
@@ -109,6 +194,15 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        // Delete image if exists
+        if(Storage::disk('public')->exists('post/'. $post->image)){
+            Storage::disk('public')->delete('post/'. $post->image);
+        }
+        $post->delete();
+        Toastr::success('Post Successfully Deleted!.', 'success');
+
+        return redirect()->route('admin.post.index');
     }
 }

@@ -27,14 +27,16 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
+                                <strong>Update Post</strong>
                             </div>
                             <div class="card-body">
-                                <form action=" {{route('admin.post.store')}} " method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <form action=" {{route('admin.post.update', $post->id)}} " method="post" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="title" class=" form-control-label">Title</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="title" name="title" placeholder="Title" class="form-control">
+                                            <input type="text" id="title" name="title" placeholder="Title" class="form-control", value="{{$post->title}}">
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -42,7 +44,7 @@
                                         <div class="col-12 col-md-9">
                                             <select name="category" id="select" class="form-control">
                                                 @foreach($categories as $category)
-                                                <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                                <option value="{{ $category->id }}" {{ $post->category->id==$category->id ? "selected": "" }}> {{ $category->name }} </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -50,7 +52,7 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="tag" class=" form-control-label">Tags</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="tag" name="tags" placeholder="Tag (Separated by , )" class="form-control">
+                                            <input type="text" id="tag" name="tags" placeholder="Tag (Separated by , )" class="form-control" value="tag">
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -59,7 +61,7 @@
                                             <div class="form-check">
                                                 <div class="checkbox">
                                                     <label for="checkbox1" class="form-check-label ">
-                                                        <input type="checkbox" id="checkbox1" name="status" value="1" class="form-check-input">Published
+                                                        <input type="checkbox" id="checkbox1" name="status" value="1" class="form-check-input" {{$post->status == 1 ? 'checked': "" }}>Published
                                                     </label>
                                                 </div>
                                             </div>
@@ -70,8 +72,8 @@
                                         <div class="col-12 col-md-9"><input type="file" id="file-input" name="image" class="form-control-file"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="textarea-input" class=" form-control-label">Textarea</label>
-                                        <textarea name="body" id="summernote" rows="9" placeholder="Content..." class="form-control"></textarea>
+                                        <label for="textarea-input" class=" form-control-label">Body</label>
+                                        <textarea name="body" id="summernote" rows="9" placeholder="Content..." class="form-control">{{ $post->body }}</textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-dot-circle-o"></i> Submit
