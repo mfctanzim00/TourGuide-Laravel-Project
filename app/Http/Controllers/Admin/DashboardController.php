@@ -26,7 +26,7 @@ class DashboardController extends Controller
 
     public function updateProfile(Request $request){
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|unique:users',
             'userid' => 'required',
             'about' => 'sometimes|max:255', 
             'image' => 'sometimes|image|mimes:jpg,png,bmp,jpeg|max:2000'
@@ -43,7 +43,7 @@ class DashboardController extends Controller
                 Storage::disk('public')->makeDirectory('user');
             }
             // Delete old image
-            if(Storage::disk('public')->exists('user/'. $user->image)){
+            if($user->image!='default.jpg' && Storage::disk('public')->exists('user/'. $user->image)){
                 Storage::disk('public')->delete('user/'. $user->image);
             }
             // store

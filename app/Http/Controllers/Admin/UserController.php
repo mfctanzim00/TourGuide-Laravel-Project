@@ -97,9 +97,14 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         if(Auth::user()->id==$id){
+            Toastr::warning('Admin cannot delete themselves.');
             return redirect()->back();
         }
+        if($user->image!='default.jpg' && Storage::disk('public')->exists('user/'. $user->image)){
+            Storage::disk('public')->delete('user/'. $user->image);
+        }
         $user->delete();
+        Toastr::success('User successfully deleted!');
         return redirect()->back();
     }
 }
