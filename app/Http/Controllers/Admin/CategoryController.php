@@ -53,7 +53,14 @@ class CategoryController extends Controller
             Storage::disk('public')->makeDirectory('category');
         }
         // store
-        $image->storeAs('category', $imageName, 'public');
+      //  $image->storeAs('category', $imageName, 'public');
+        $categoryImg = Image::make($image)->resize(640, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->stream();
+        // Store in public/category
+        Storage::disk('public')->put('category/'.$imageName, $categoryImg);
+
 
         $category = new Category();
         $category->name = $request->name;
@@ -126,7 +133,13 @@ class CategoryController extends Controller
                 Storage::disk('public')->delete('category/'. $category->image);
             }
             // store
-            $image->storeAs('category', $imageName, 'public');
+           // $image->storeAs('category', $imageName, 'public');
+            $categoryImg = Image::make($image)->resize(640, null, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })->stream();
+            // Store in public/category
+            Storage::disk('public')->put('category/'.$imageName, $categoryImg);
         }
         else {
             $imageName = $category->image;
