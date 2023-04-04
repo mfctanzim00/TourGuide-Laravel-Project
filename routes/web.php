@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,11 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/posts', [App\Http\Controllers\HomeController::class, 'posts'])->name('posts');
-Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categories'])->name('categories');
 Route::get('/post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])->name('post');
+Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categories'])->name('categories');
+Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'categoryPost'])->name('category.post');
+Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts'])->name('tag.posts');
 
 
 ////    Admin   
@@ -49,4 +54,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user']], function(){
 
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+});
+
+
+
+
+
+/////  View Composer
+View::composer('layouts.frontend.partials.sidebar', function($view){
+	$categories = Category::all()->take(10);
+	$recentPosts = Post::latest()->take(3)->get();
+	return $view->with('categories', $categories)->with('recentPosts', $recentPosts);
 });

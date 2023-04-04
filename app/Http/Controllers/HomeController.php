@@ -15,28 +15,47 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->take(6)->get();
+        $posts = Post::latest()->take(6)->where('status', 1)->get();
         return view('index', compact('posts'));
     }
 
     public function posts()
     {
-        $posts = Post::latest()->paginate(10);
-        $categories = Category::take(10)->get();
-        return view('posts', compact('posts', 'categories'));
+        $posts = Post::latest()->where('status', 1)->paginate(2);
+        return view('posts', compact('posts'));
     }
 
     public function post($slug)
     {
-        $post = Post::where('slug', $slug)->first();
-        $categories = Category::take(10)->get();
-        $posts = Post::latest()->take(3)->get();
-        return view('post', compact('post', 'categories', 'posts'));
+        $post = Post::where('slug', $slug)->where('status', 1)->first();
+        $posts = Post::latest()->take(3)->where('status', 1)->get();
+        return view('post', compact('post', 'posts'));
     }
 
     public function categories()
     {
         $categories = Category::all();
         return view('categories', compact('categories'));
+    }
+
+    public function categoryPost($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $posts = $category->posts()->where('status', 1)->paginate(10);
+        return view('categoryPost', compact('posts'));
+    }
+
+    public function search(Request $request)
+    {
+        $this->validate($request, ['search' => 'required|max:255' ]);
+        $search = $request->search;
+        $posts = Post::where('title', 'like', "%$search%")->paginate(10);
+        $posts->appends(['search' => $search ]);
+        return view('search', compact('posts', 'search'));
+    }
+
+    public function tagPosts($name)
+    {
+        $tags = Tag::where('name', 'like', "%$name%")->get();
     }
 }

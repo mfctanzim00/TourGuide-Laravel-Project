@@ -2,28 +2,31 @@
 
 @section('content')
     
-    <!-- Start top-section Area -->
-<section class="top-section-area section-gap">
-  <div class="container">
-    <div class="row justify-content-between align-items-center d-flex">
-      <div class="col-lg-8 top-left">
-        <h1 class="text-white mb-20">All Post</h1>
-        <ul>
-          <li>
-            <a href="index.html">Home</a>
-            <span class="lnr lnr-arrow-right"></span>
-          </li>
-          <li>
-            <a href="category.html">Category</a>
-            <span class="lnr lnr-arrow-right"></span>
-          </li>
-          <li><a href="single.html">Posts</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-    <!-- End top-section Area -->   
+<!-- Start top-section Area -->
+            <section class="top-section-area section-gap">
+                <div class="container">
+                    <div class="row justify-content-center align-items-center d-flex">
+                        <div class="col-lg-8">
+                            <div id="imaginary_container">
+                                <form action=" {{ route('search') }} " method="GET">
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" class="form-control"  placeholder="Addictionwhen gambling" 
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Addictionwhen gambling '" required="" 
+                                    name="search" value="{{ $search ?? ' ' }}">
+                                    <span class="input-group-addon">
+                                        <button type="submit">
+                                            <span class="lnr lnr-magnifier"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                                </form>
+                            </div>
+                            <p class="mt-20 text-center text-white">{{ $posts->count() ?? "0" }} results found for “{{ $search }}”</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- End top-section Area -->  
 
     <!-- Start post Area -->
 <div class="post-wrapper pt-100">
@@ -63,9 +66,7 @@
                 @endif
               </div>
               <div class="justify-content-center d-flex mt-5">
-               
-                {{ $posts->links() }}
-               
+                  {{ $posts->appends(Request::all())->links() }}
               </div>
             </div>
           </div>
