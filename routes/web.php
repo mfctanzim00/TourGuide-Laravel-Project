@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
 /////  View Composer
 View::composer('layouts.frontend.partials.sidebar', function($view){
 	$categories = Category::all()->take(10);
+	$recentTags = Tag::all();
 	$recentPosts = Post::latest()->take(3)->get();
-	return $view->with('categories', $categories)->with('recentPosts', $recentPosts);
+	return $view->with('categories', $categories)->with('recentPosts', $recentPosts)->with('recentTags', $recentTags);
 });
