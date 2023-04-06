@@ -106,103 +106,22 @@
                     <div class="row flex-column">
                       <h5 class="text-uppercase pb-80">05 Comments</h5>
                       <br />
-                      <!-- Frist Comment -->
+                      <!--  Comment -->
                       <div class="comment">
+                        @foreach($post->comments as $comment)
                         <div class="comment-list">
                           <div
                             class="single-comment justify-content-between d-flex"
                           >
                             <div class="user justify-content-between d-flex">
                               <div class="thumb">
-                                <img src="img/asset/c1.jpg" alt="" />
+                                <img src="{{ asset('storage/user/'.$comment->user->image) }}" alt="{{$comment->user->image}}" width="50px"/>
                               </div>
                               <div class="desc">
-                                <h5><a href="#">Emilly Blunt</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm</p>
+                                <h5><a href="#"> {{$comment->user->name}} </a></h5>
+                                <p class="date">{{ $comment->created_at->format('D, d M Y H:i') }}</p>
                                 <p class="comment">
-                                  Never say goodbye till the end comes!
-                                </p>
-                              </div>
-                            </div>
-                            <div class="">
-                              <button class="btn-reply text-uppercase" id="reply-btn" 
-                                onclick="showReplyForm('1','Emilly Blunt')">reply 1</button
-                              >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="comment-list left-padding">
-                          <div
-                            class="single-comment justify-content-between d-flex"
-                          >
-                            <div class="user justify-content-between d-flex">
-                              <div class="thumb">
-                                <img src="img/asset/c3.jpg" alt="" />
-                              </div>
-                              <div class="desc">
-                                <h5><a href="#">Sally Sally</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm</p>
-                                <p class="comment">
-                                  @Emilly Blunt Never say goodbye till the end comes!
-                                </p>
-                              </div>
-                            </div>
-                            <div class="">
-                              <button class="btn-reply text-uppercase" id="reply-btn" 
-                                onclick="showReplyForm('1','Sally Sally')">reply 1</button
-                              >
-                            </div>
-                          </div>
-                        </div>
-                        <div class="comment-list left-padding" id="reply-form-1" style="display: none">
-                          <div
-                            class="single-comment justify-content-between d-flex"
-                          >
-                            <div class="user justify-content-between d-flex">
-                              <div class="thumb">
-                                <img src="img/asset/c2.jpg" alt="" />
-                              </div>
-                              <div class="desc">
-                                <h5><a href="#">Goerge Stepphen</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm</p>
-                                <div class="row flex-row d-flex">
-                                <form action="#" method="POST">
-                                  <div class="col-lg-12">
-                                    <textarea
-                                      id="reply-form-1-text"
-                                      cols="60"
-                                      rows="2"
-                                      class="form-control mb-10"
-                                      name="message"
-                                      placeholder="Messege"
-                                      onfocus="this.placeholder = ''"
-                                      onblur="this.placeholder = 'Messege'"
-                                      required=""
-                                    ></textarea>
-                                  </div>
-                                  <button type="submit" class="btn-reply text-uppercase ml-3">Reply</button>
-                                </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- 2nd Comment -->
-                      <div class="comment">
-                        <div class="comment-list">
-                          <div
-                            class="single-comment justify-content-between d-flex"
-                          >
-                            <div class="user justify-content-between d-flex">
-                              <div class="thumb">
-                                <img src="img/asset/c1.jpg" alt="" />
-                              </div>
-                              <div class="desc">
-                                <h5><a href="#">Emilly Blunt</a></h5>
-                                <p class="date">December 4, 2017 at 3:12 pm</p>
-                                <p class="comment">
-                                  Never say goodbye till the end comes!
+                                  {{ $comment->comment }}
                                 </p>
                               </div>
                             </div>
@@ -213,7 +132,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="comment-list left-padding">
+                        @endforeach
+                        <!-- <div class="comment-list left-padding">
                           <div
                             class="single-comment justify-content-between d-flex"
                           >
@@ -268,7 +188,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -277,22 +197,30 @@
 
                 <!-- Start commentform Area -->
                 <section class="commentform-area pb-120 pt-80 mb-100">
+                @guest
+                  <div class="container">
+                    <h4> Please log in to comment! </h4>
+                  </div>
+                @else
                   <div class="container">
                     <h5 class="text-uppercas pb-50">Leave a Reply</h5>
                     <div class="row flex-row d-flex">
                       <div class="col-lg-12">
-                        <textarea
-                          class="form-control mb-10"
-                          name="message"
-                          placeholder="Messege"
-                          onfocus="this.placeholder = ''"
-                          onblur="this.placeholder = 'Messege'"
-                          required=""
-                        ></textarea>
-                        <a class="primary-btn mt-20" href="#">Comment</a>
+                        <form action="{{ route('comment.store', $post->id) }}" method="POST">
+                        @csrf
+                          <textarea class="form-control mb-10"
+                            name="comment"
+                            placeholder="Messege"
+                            onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Messege'"
+                            required=""
+                          ></textarea>
+                          <button type="submit" class="primary-btn mt-20" href="#">Comment</button>
+                        </form>
                       </div>
                     </div>
                   </div>
+                @endguest
                 </section>
                 <!-- End commentform Area -->
               </div>

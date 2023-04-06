@@ -18,4 +18,8 @@ class Post extends Model
     public function tags(){
         return $this->hasMany('App\Models\Tag', 'postID', 'id');
     }
+
+    public function comments() {
+        return $this->hasMany('App\Models\Comment');
+    }
 }

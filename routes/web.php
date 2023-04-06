@@ -33,6 +33,7 @@ Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categori
 Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'categoryPost'])->name('category.post');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts'])->name('tag.posts');
+Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
 
 
 ////    Admin   
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 	Route::resource('user', 'UserController')->except(['create', 'show', 'edit', 'store']);
 	Route::resource('category', 'CategoryController')->except(['create', 'show', 'edit']);
 	Route::resource('post', 'PostController');
+	Route::get('comments', 'CommentController@index')->name('comment.index');
+	Route::delete('comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 });
 
 
@@ -54,7 +57,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user']], function(){
 
+	Route::get('profile', 'DashboardController@showProfile')->name('profile');
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+	Route::get('comments', 'CommentController@index')->name('comments');
 });
 
 
