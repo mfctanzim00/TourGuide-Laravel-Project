@@ -111,7 +111,7 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" onclick="event.preventDefault();
                                                      document.getElementById('deletecomment-{{ $comment->id }}').submit();">Confirm</button>
-                                <form action="{{ route('admin.comment.destroy', $comment->id) }}" style="display: none" id="deletecomment-{{ $comment->id }}" method="POST">
+                                <form action="{{ route('user.comment.destroy', $comment->id) }}" style="display: none" id="deletecomment-{{ $comment->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 </form>

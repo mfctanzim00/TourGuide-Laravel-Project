@@ -34,6 +34,7 @@ Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'cat
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts'])->name('tag.posts');
 Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store');
+Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store');
 
 
 ////    Admin   
@@ -47,8 +48,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 	Route::resource('user', 'UserController')->except(['create', 'show', 'edit', 'store']);
 	Route::resource('category', 'CategoryController')->except(['create', 'show', 'edit']);
 	Route::resource('post', 'PostController');
-	Route::get('comments', 'CommentController@index')->name('comment.index');
-	Route::delete('comment/{id}', 'CommentController@destroy')->name('comment.destroy');
+	Route::get('/comments', 'CommentController@index')->name('comment.index');
+	Route::delete('/comment/{id}', 'CommentController@destroy')->name('comment.destroy');
+	Route::delete('/reply-comment/{id}', 'CommentReplyController@destroy')->name('comment-reply.destroy');
 });
 
 
@@ -59,7 +61,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
 
 	Route::get('profile', 'DashboardController@showProfile')->name('profile');
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-	Route::get('comments', 'CommentController@index')->name('comments');
+	Route::get('comments', 'CommentController@index')->name('comment.index');
+	Route::delete('comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 });
 
 
