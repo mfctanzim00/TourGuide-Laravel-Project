@@ -4,21 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Comment;
 use App\Models\CommentReply;
 use Brian2694\Toastr\Facades\Toastr;
 
-class CommentController extends Controller
+class CommentReplyController extends Controller
 {
     public function index() {
-        $comments = Comment::all();
-        return view('admin.comments.index', compact('comments'));
+        $reply_comments = CommentReply::all();
+        return view('admin.reply-comments.index', compact('reply_comments'));
     }
 
     public function destroy($id) {
-        $comment = Comment::find($id);
-        $replies = CommentReply::where('comment_id', $id)->delete();
-        $comment->delete();
+        $reply_comment = CommentReply::find($id);
+        $reply_comment->delete();
         Toastr::success('Comment successfully deleted.');
         return redirect()->back();
     }
