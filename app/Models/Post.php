@@ -22,4 +22,9 @@ class Post extends Model
     public function comments() {
         return $this->hasMany('App\Models\Comment');
     }
+
+    // Many to many
+    public function  likedUser() {
+        return $this->belongsToMany('App\Models\User')->withTimestamps();
+    }
 }

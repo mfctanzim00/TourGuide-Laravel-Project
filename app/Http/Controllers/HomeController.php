@@ -7,6 +7,9 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 
+use Auth;
+use Illuminate\Support\Facades\Session;
+
 class HomeController extends Controller
 {
     /**
@@ -29,8 +32,15 @@ class HomeController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->where('status', 1)->first();
-        $posts = Post::latest()->take(3)->where('status', 1)->get();
-        return view('post', compact('post', 'posts'));
+     //   $posts = Post::latest()->take(3)->where('status', 1)->get();
+
+        // Increase viewCount
+        $postKey = 'post_'.$post->id;
+        if(!Session::has($postKey)) {
+            $post->increment('view_count');
+            Session::put($postKey, 1);
+        }
+        return view('post', compact('post'));
     }
 
     public function categories()
@@ -62,5 +72,20 @@ class HomeController extends Controller
         $tags->appends(['search' => $name ]);
 
         return view('tagPosts', compact('tags', 'query'));
+    }
+
+    public function likePost($post) 
+    {
+        // Check if user already liked the post or not
+        $user = Auth::user();
+        $likePost = $user->likedPosts()->where('post_id', $post)->count();
+
+        if($likePost == 0) {
+            $user->likedPosts()->attach($post);
+        }
+        else {
+            $user->likedPosts()->detach($post);
+        }
+        return redirect()->back();
     }
 }

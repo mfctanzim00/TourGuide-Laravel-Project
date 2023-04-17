@@ -51,9 +51,9 @@
                       </p>
                       <p class="footer pt-20">
                         <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <a href="#">06 Likes</a>
+                        <a href="#"> {{ $post->likedUser->count() }} Likes </a>
                         <i class="ml-20 fa fa-comment-o" aria-hidden="true"></i>
-                          <a href="#">02 Comments</a>
+                          <a href="#">{{ $post->comments->count() }}  Comments</a>
                       </p>
                     </div>
                   </div>

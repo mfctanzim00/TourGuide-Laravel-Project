@@ -35,6 +35,7 @@ Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->n
 Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts'])->name('tag.posts');
 Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store')->middleware('auth');
+Route::post('/like-post/{post}', [App\Http\Controllers\HomeController::class, 'likePost'])->name('post.like')->middleware('auth');
 
 
 ////    Admin   
@@ -52,6 +53,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 	Route::delete('/comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 	Route::get('/reply-comments', 'CommentReplyController@index')->name('reply-comment.index');
 	Route::delete('/reply-comment/{id}', 'CommentReplyController@destroy')->name('reply-comment.destroy');
+	Route::get('/post-liked-users/{post}', 'PostController@likedUsers')->name('post.like.users');
 });
 
 
@@ -66,6 +68,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
 	Route::delete('comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 	Route::get('/reply-comments', 'CommentReplyController@index')->name('reply-comment.index');
 	Route::delete('/reply-comment/{id}', 'CommentReplyController@destroy')->name('reply-comment.destroy');
+	Route::get('/user-liked-posts', 'DashboardController@likedPosts')->name('like.posts');
 });
 
 
