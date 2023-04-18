@@ -1,9 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Mail\NewPost;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,4 +83,18 @@ View::composer('layouts.frontend.partials.sidebar', function($view){
 	$recentTags = Tag::all();
 	$recentPosts = Post::latest()->take(3)->get();
 	return $view->with('categories', $categories)->with('recentPosts', $recentPosts)->with('recentTags', $recentTags);
+});
+
+
+
+// Send mail
+Route::get('/send', function(){
+	//return "Send Mail";
+	$post = Post::find(7);
+	// Send Mail
+	Mail::to('user@user.com')
+		->cc(['user1@user.com', 'user2@user.com'])
+		->queue( new NewPost($post));
+		
+	return (new App\Mail\NewPost($post))->render();
 });

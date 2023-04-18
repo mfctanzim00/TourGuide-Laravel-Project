@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
+use App\Mail\NewPost;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Auth;
 use Brian2694\Toastr\Facades\Toastr;
@@ -84,6 +87,14 @@ class PostController extends Controller
             $post->status = 1;
         }
         $post->save();
+
+        // Notification by mail
+        if($post->status) {
+            $users = User::all();
+            foreach($users as $user){
+                Mail::to($user->email)->queue(new NewPost($post));
+            }
+        }
 
         $tags = [];
         $stringTags = array_map('trim', explode(',', $request->tags));
@@ -189,6 +200,14 @@ class PostController extends Controller
             $post->status = false;
         }
         $post->save();
+
+        // Notification by mail
+        if($post->status) {
+            $users = User::all();
+            foreach($users as $user){
+                Mail::to($user->email)->queue(new NewPost($post));
+            }
+        }
 
         // Delete old tags
         $post->tags()->delete();
