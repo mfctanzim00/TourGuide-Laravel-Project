@@ -28,6 +28,12 @@ Route::get('/admin/users', function () {
 
 Auth::routes();
 
+
+// Social Login
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/posts', [App\Http\Controllers\HomeController::class, 'posts'])->name('posts');
 Route::get('/post/{slug}', [App\Http\Controllers\HomeController::class, 'post'])->name('post');
@@ -64,8 +70,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user']], function(){
 
-	Route::get('profile', 'DashboardController@showProfile')->name('profile');
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+	Route::get('profile', 'DashboardController@showProfile')->name('profile');
+	Route::put('profile', 'DashboardController@updateProfile')->name('profile.update');
+	Route::put('profile/password', 'DashboardController@changePassword')->name('profile.password');
 	Route::get('comments', 'CommentController@index')->name('comment.index');
 	Route::delete('comment/{id}', 'CommentController@destroy')->name('comment.destroy');
 	Route::get('/reply-comments', 'CommentReplyController@index')->name('reply-comment.index');
