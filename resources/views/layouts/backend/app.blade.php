@@ -9,7 +9,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sufee Admin - HTML5 Admin Template</title>
+    @if(Auth::user()->role_id==1)
+        <title> Admin Panel</title>
+    @else 
+        <title> User Panel</title>
+    @endif
+
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

@@ -5,8 +5,15 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="{{asset('backend/images/logo.png')}}" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="{{asset('backend/images/logo2.png')}}" alt="Logo"></a>
+                
+                @if(Auth::user()->role_id==1)
+                    <a class="navbar-brand" href="{{route('admin.dashboard')}}"><img src="" alt=""> Admin </a>
+                @else
+                    <a class="navbar-brand" href="{{route('user.dashboard')}}"><img src="" alt=""> User </a>
+                @endif
+
+                <!-- <a class="navbar-brand" href="./"><img src="{{asset('backend/images/logo.png')}}" alt="Logo"></a> -->
+                <a class="navbar-brand hidden" href="./"><img src="{{asset('backend/images/logo2.png')}}" alt="Logo2"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">

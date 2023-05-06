@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller

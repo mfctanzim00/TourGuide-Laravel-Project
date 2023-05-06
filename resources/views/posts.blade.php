@@ -37,17 +37,17 @@
               <div class="row justify-content-center">
                 @if ($posts->count() > 0)
                   @foreach($posts as $post)
-                  <div class="single-posts col-lg-4 col-sm-4">
-                    <img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="$post->image">
-                    <div class="date mt-20 mb-20">10 Jan 2018</div>
+                  <div class="single-posts">
+                    <div>
+                      <img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="{{$post->image}}"style="width:1000px; height: 200px;"/>
+                      <div class="date mt-20 mb-20">10 Jan 2018</div>
+                    </div>
                     <div class="detail">
                       <a href=" {{ route('post', $post->slug) }} ">
-                        <h4 class="pb-20">
-                          {{ $post->title }}
-                        </h4>
+                        <h4 class="pb-20"> {{ $post->title }} </h4>
                       </a>
                       <p>
-                        !!  $post->body  !!    
+                        {!! Str::limit($post->body, 400)!!}
                       </p>
                       <p class="footer pt-20">
                         <i class="fa fa-heart-o" aria-hidden="true"></i>

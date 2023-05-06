@@ -34,7 +34,7 @@
       <div class="active-recent-carusel">
         @foreach ($recentPosts as $recentPost)
         <div class="item">
-        <img src="{{asset('storage/post/'.$recentPost->image)}}" alt="{{$recentPost->image}}" width="200px" />
+        <img src="{{asset('storage/post/'.$recentPost->image)}}" alt="{{$recentPost->image}}" style="width:1000px; height: 200px;"/>
         <a href="{{route('post', $recentPost->slug)}}">
         <p class="mt-20 title text-uppercase">
             {{$recentPost->title}}

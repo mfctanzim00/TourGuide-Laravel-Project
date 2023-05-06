@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container px-3">
           <a class="navbar-brand" href="index.html">
-            <img src="{{asset('frontend/img/sitelogo.png')}}" alt="" width="100px">
+            <img src="{{asset('frontend/img/project_logo_2.png')}}" alt="" style="width:160px; height: 100;">
           </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="lnr lnr-menu"></span>
