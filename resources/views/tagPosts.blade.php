@@ -47,7 +47,8 @@
                           </h4></a
                         >
                         <p>
-                        {!!Str::limit($tag->post->body, 300)!!}
+                        <!-- {!!Str::limit($tag->post->body, 300)!!} -->
+                        {!!  substr(strip_tags($post->body), 0, 200) !!}
                         </p>
                         <p class="footer pt-20">
                           <i class="fa fa-heart-o" aria-hidden="true"></i>

@@ -47,7 +47,8 @@
                         <h4 class="pb-20"> {{ $post->title }} </h4>
                       </a>
                       <p>
-                        {!! Str::limit($post->body, 400)!!}
+                        <!-- {!! Str::limit($post->body, 400)!!} -->
+                        {!!  substr(strip_tags($post->body), 0, 200) !!}
                       </p>
                       <p class="footer pt-20">
                         <i class="fa fa-heart-o" aria-hidden="true"></i>
