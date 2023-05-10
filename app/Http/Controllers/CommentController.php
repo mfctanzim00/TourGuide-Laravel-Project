@@ -10,7 +10,7 @@ use Brian2694\Toastr\Facades\Toastr;
 class CommentController extends Controller
 {
     public function store(Request $request, $post) {
-        $this->validate($request, ['comment' => 'required|max:1000']);
+        $this->validate($request, ['comment' => 'required|max:1000']); 
         $comment = new Comment();
         $comment->post_id = $post;
         $comment->user_id = Auth::id();

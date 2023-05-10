@@ -145,7 +145,7 @@
                               <h5><a href="#">{{$comment->user->name}}</a></h5>
                               <p class="date">{{$comment->created_at->format('D, d M Y H:i')}}</p>
                               <p class="comment">
-                                {{$comment->message}}
+                                {{$comment->comment}}
                               </p>
                             </div>
                           </div>
@@ -246,7 +246,7 @@
                               @csrf
                           <textarea
                             class="form-control mb-10"
-                            name="message"
+                            name="comment"
                             placeholder="Messege"
                             onfocus="this.placeholder = ''"
                             onblur="this.placeholder = 'Messege'"
