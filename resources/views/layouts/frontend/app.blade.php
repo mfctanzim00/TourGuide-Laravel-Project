@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/bootstrap.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/css/main.css')}}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;500&display=swap" rel="stylesheet">
     <style>
       .menu1{
         /* border: 1px solid #333; */

@@ -14,8 +14,34 @@
                     <li><a href="/posts">Posts</a></li>
                     <li><a href="/categories">Categories</a></li>
                     <li><a href="/#about">About</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
                     @if (Route::has('login'))
                     @auth
+                    ...
                         <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" onclick="dropMenu()">
@@ -64,6 +90,94 @@
                 @endauth
 
                  @endif
+
+
+
+
+                 @if (Route::has('login'))
+                  
+                 @else 
+                    <li class="dropdownmenu" style="font-family: 'Gill Sans', sans-serif; color:black;">
+                        <a href="#" onclick="dropNenu()">
+                            <i class="fa fa-bell position-relative medium" aria-hidden="true"
+                                style="margin-right: -44px;
+                                font-size: 16px;
+                                margin-top: -1px;"></i>&nbsp;
+                            <span class=" translate-middle badge rounded-pill bg-danger"
+                                style="float: right;
+                                    margin-top: -10px;
+                                    margin-right: -37px;">
+                                                            99+
+
+                            </span>
+                            <!-- <i class="fas fa-user"></i> -->
+                        </a>
+                        <div id="dropNenu" class="dropdown-menu menu2 "
+                            style="display:none;
+                            float: left;
+                            margin-left:1054px;
+                            margin-top: -17px;">
+
+
+                            <div class="scrollable-menu"
+                                style=" height: auto;
+                                    max-height: 200px;
+                                    overflow-x: hidden;">
+                                <a href="" class="dropdown-item" target="_blank">
+                                    ....
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fa fa-tv" aria-hidden="true"></i>&nbsp; Dashboard</a>
+
+                                <a href="" class="dropdown-item" target="_blank">
+
+                                </a>
+                                <a href=""><i class="fa fa-tv"
+                                        aria-hidden="true"></i>&nbsp;Dashboardjygvjhhhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</a>
+
+                                <a href="" class="dropdown-item" target="_blank">
+
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fa fa-tv" aria-hidden="true"></i>&nbsp; Dashboard</a>
+
+                                <a href="" class="dropdown-item" target="_blank">
+
+                                </a>
+                                <a href=""><i class="fa fa-tv"
+                                        aria-hidden="true"></i>&nbsp;Dashboard</a>
+                                <a href="" class="dropdown-item" target="_blank">
+
+                                </a>
+                                <a class="dropdown-item" href="">
+                                    <i class="fa fa-tv" aria-hidden="true"></i>&nbsp; Dashboard</a>
+
+                                <a href="" class="dropdown-item" target="_blank">
+
+                                </a>
+                                <a href=""><i class="fa fa-tv"
+                                        aria-hidden="true"></i>&nbsp;Dashboard</a>
+
+                            </div>
+
+
+
+
+
+                        </div>
+                    </li>
+
+                    <script>
+                        function dropNenu() {
+                            var dropdownmenu = document.getElementById('dropNenu');
+                            if (dropdownmenu.style.display === "none") {
+                                dropdownmenu.style.display = "block";
+                            } else {
+                                dropdownmenu.style.display = "none";
+                            }
+                        }
+                    </script>
+                    @endif
                 </ul>
               </div>
         </div>

@@ -68,7 +68,7 @@
                                         @foreach($reply_comments as $key => $reply_comment)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $reply_comment->message }}</td>
+                                            <td>{{ $reply_comment->user_id->name }}</td>
                                             <td>{{ $reply_comment->comment->comment }}</td>
                                              <td> <a href=" {{ route('post', $reply_comment->comment->post->slug) }} "> {{ $reply_comment->comment->post->title }} </a> </td>
                                             <td>{{ $reply_comment->created_at->diffForHumans() }}</td>

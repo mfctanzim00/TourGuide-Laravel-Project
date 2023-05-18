@@ -1,9 +1,10 @@
 @extends('layouts.frontend.app')
 @section('content')
-    <div class="login-area page-area py-5 my-5" style="padding-top: 7rem !important;">
+    <div class="login-area page-area py-5 my-5" style="padding-top: 7rem !important;background-image:url('/frontend/img/High_resolution_wallpaper_background_ID_77700326921.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;font-family: 'Gill Sans', sans-serif;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 border p-4">
+                <div class="col-md-8 border p-4" style="font-family: 'Gill Sans', sans-serif;">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <h3>Login to your Account</h3>

@@ -201,7 +201,7 @@
                               <h5><a href="#">{{Auth::user()->name}}</a></h5>
                               <p class="date">{{date('D, d M Y H:i')}}</p>
                               <div class="row flex-row d-flex">
-                              <form action="{{route('reply.store',$comment->id)}}" method="POST">
+                              <form action="{{route('reply.store', $comment->id) }}" method="POST">
                               @csrf
                                 <div class="col-lg-12">
                                   <textarea

@@ -1,7 +1,8 @@
 @extends('layouts.frontend.app')
 @section('content')
 
-  <div class="login-area page-area py-5 my-5" style="padding-top: 7rem !important;">
+  <div class="login-area page-area py-5 my-5" style="padding-top: 7rem !important;background-image:url('/frontend/img/High_resolution_wallpaper_background_ID_77700326921.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;font-family: 'Gill Sans', sans-serif;">
     <div class="container">
              <!--error msg-->
              @if ($errors->any())
@@ -20,15 +21,15 @@
        <!--End error msg-->
 
       <div class="row">
-          <div class="col-md-8 border p-4">
+          <div class="col-md-8  p-4" style="font-family: 'Gill Sans', sans-serif;">
            <form method="POST" action="{{ route('register') }}">
                         @csrf
-              <h3>Create New Account</h3>
+              <h3 class="text-light" style="font-family: 'Gill Sans', sans-serif;">Create New Account</h3>
               <hr>
               <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">First Name</label>
                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -40,7 +41,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">User Id</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">User Id</label>
                      <input id="userid" type="text" class="form-control @error('userid') is-invalid @enderror" name="userid" value="{{ old('userid') }}" required autocomplete="userid" autofocus>
 
                                 @error('userid')
@@ -54,7 +55,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">Email address</label>
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
@@ -66,7 +67,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Password</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">Password</label>
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -81,7 +82,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="password-confirm">Confirm Password</label>
+                    <label for="password-confirm"class="text-light" style="font-family: 'Gill Sans', sans-serif;">Confirm Password</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                   </div>
                 </div>
@@ -91,15 +92,15 @@
 
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" style="margin-left: -0.25rem;">
-                <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                <label class="form-check-label text-light" for="exampleCheck1" style="font-family: 'Gill Sans', sans-serif;">Remember Me</label>
               </div>
-              <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Register Now</button>
+              <button type="submit" class="btn btn-success text-light" style="font-family: 'Gill Sans', sans-serif;"><i class="fa fa-check"></i> Register Now</button>
             </form>
           </div>
-          <div class="col-md-4 border p-4">
-            <h4 class="py-4">Already have an account  ?</h4>
+          <div class="col-md-4  p-4 text-light">
+            <h4 class="py-4 text-light" style="font-family: 'Gill Sans', sans-serif;">Already have an account  ?</h4>
             <p>
-              <a href="{{route('login')}}" class="btn btn-primary btn-lg">Login Now</a>
+              <a href="{{route('login')}}" class="btn btn-primary btn-lg" style="font-family: 'Gill Sans', sans-serif;">Login Now</a>
             </p>
           </div>
       </div>
