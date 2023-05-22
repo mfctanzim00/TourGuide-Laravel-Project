@@ -8,12 +8,12 @@
 
 @section('content')
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Replied Comments</h1>
+                        <h1 style="font-family: 'Gill Sans', sans-serif; color:black;">Replied Comments</h1>
                     </div>
                 </div>
             </div>
@@ -21,9 +21,9 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</a></li>
                             <li>
-                                <a href="#" class="active">Replied Comments</a>
+                                <a href="#" class="active"style="font-family: 'Gill Sans', sans-serif; color:black;">Replied Comments</a>
                             </li>
                         </ol>
                     </div>
@@ -49,11 +49,11 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Reply Comments Table</strong>
+                                <strong class="card-title"style="font-family: 'Gill Sans', sans-serif; color:black;">Reply Comments Table</strong>
                               
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -68,7 +68,7 @@
                                         @foreach($reply_comments as $key => $reply_comment)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $reply_comment->user_id->name }}</td>
+                                            <td>{{ $reply_comment->message }}</td>
                                             <td>{{ $reply_comment->comment->comment }}</td>
                                              <td> <a href=" {{ route('post', $reply_comment->comment->post->slug) }} "> {{ $reply_comment->comment->post->title }} </a> </td>
                                             <td>{{ $reply_comment->created_at->diffForHumans() }}</td>
@@ -103,11 +103,11 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>
+                                <p style="font-family: 'Gill Sans', sans-serif; color:black;">
                                     The comment will be deleted !!
                                 </p>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" onclick="event.preventDefault();
                                                      document.getElementById('deletecomment-{{ $reply_comment->id }}').submit();">Confirm</button>

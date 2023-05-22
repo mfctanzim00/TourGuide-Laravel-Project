@@ -1,11 +1,11 @@
 @extends('layouts.backend.app')
 
 @section('content')
-<div class="breadcrumbs">
+<div class="breadcrumbs"style="font-family: 'Gill Sans', sans-serif; color:black;">
     <div class="col-sm-4">
         <div class="page-header float-left">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1 style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</h1>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <div class="page-header float-right">
             <div class="page-title">
                 <ol class="breadcrumb text-right">
-                    <li class="active">Dashboard</li>
+                    <li class="active" style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</li>
                 </ol>
             </div>
         </div>
@@ -31,15 +31,15 @@
         </div>
     </div> -->
 
-    <div class="col-xl-3 col-lg-6">
+    <div class="col-xl-3 col-lg-6"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="card">
             <div class="card-body">
                 <div class="stat-widget-one">
                     <div class="stat-icon dib"><i class="ti-file text-success border-success"></i>
                     </div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Post Count</div>
-                        <div class="stat-digit">1,012</div>
+                        <div class="stat-text"style="font-family: 'Gill Sans', sans-serif; color:black;">Post Count</div>
+                        <div class="stat-digit"style="font-family: 'Gill Sans', sans-serif; color:black;">1,012</div>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
     </div>
 
 
-    <div class="col-xl-3 col-lg-6">
+    <div class="col-xl-3 col-lg-6"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="card">
             <div class="card-body">
                 <div class="stat-widget-one">
@@ -89,12 +89,12 @@
         </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="col-lg-12"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="card">
             <div class="card-header">
-                <strong class="card-title">Recent Comments</strong>
+                <strong class="card-title"style="font-family: 'Gill Sans', sans-serif; color:black;">Recent Comments</strong>
             </div>
-            <div class="card-body">
+            <div class="card-body"style="font-family: 'Gill Sans', sans-serif; color:black;">
                 <table class="table table-striped">
                     <thead>
                         <tr>

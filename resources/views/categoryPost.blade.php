@@ -3,21 +3,21 @@
 @section('content')
     
      <!-- Start top-section Area -->
-     <section class="top-section-area section-gap">
-      <div class="container">
+     <section class="top-section-area section-gap"style="font-family: 'Gill Sans', sans-serif; color:black;">
+      <div class="container"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="row justify-content-between align-items-center d-flex">
           <div class="col-lg-8 top-left">
-            <h1 class="text-white mb-20">All Post of Category 1</h1>
+            <h1 class=" mb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">All Post of Category 1</h1>
             <ul>
               <li>
-                <a href="index.html">Home</a
+                <a href="index.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Home</a
                 ><span class="lnr lnr-arrow-right"></span>
               </li>
               <li>
-                <a href="category.html">Category</a
+                <a href="category.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Category</a
                 ><span class="lnr lnr-arrow-right"></span>
               </li>
-              <li><a href="single.html">Posts</a></li>
+              <li><a href="single.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Posts</a></li>
             </ul>
           </div>
         </div>
@@ -26,7 +26,7 @@
     <!-- End top-section Area -->
 
     <!-- Start post Area -->
-    <div class="post-wrapper pt-100">
+    <div class="post-wrapper pt-100"style="font-family: 'Gill Sans', sans-serif; color:black;">
       <!-- Start post Area -->
       <section class="post-area">
         <div class="container">
@@ -39,33 +39,33 @@
                     @foreach($posts as $post)
                     <div class="single-posts col-lg-6 col-sm-6">
                       <img class="img-fluid" src=" {{ asset('storage/post/'. $post->image) }} " alt="{{ $post->image }}" style="width:1000px; height: 200px;"/>
-                      <div class="date mt-20 mb-20"> {{ $post->created_at->format('D, d M Y H:i') }} </div>
+                      <div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:white;"> {{ $post->created_at->format('D, d M Y H:i') }} </div>
                       <div class="detail">
-                        <a href=" {{ route('post', $post->slug) }} "
-                          ><h4 class="pb-20">
+                        <a href=" {{ route('post', $post->slug) }} "style="font-family: 'Gill Sans', sans-serif; color:black;"
+                          ><h4 class="pb-20"style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">
                             {{ $post->title }}
                           </h4></a
                         >
-                        <p>
+                        <p style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">
                         <!-- {!!Str::limit($post->body, 200)!!} -->
                         {!!  substr(strip_tags($post->body), 0, 200) !!}
                         </p>
                         <p class="footer pt-20">
                           <i class="fa fa-heart-o" aria-hidden="true"></i>
-                          <a href="#">06 Likes</a>
+                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">06 Likes</a>
                           <i
                             class="ml-20 fa fa-comment-o"
                             aria-hidden="true"
                           ></i>
-                          <a href="#">02 Comments</a>
+                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">02 Comments</a>
                         </p>
                       </div>
                     </div>
                     @endforeach
                     @else
-                        <h1>No posts availabe</h1>
+                        <h1 style="font-family: 'Gill Sans', sans-serif; color:black;">No posts availabe</h1>
                     @endif
-                    <div class="justify-content-center d-flex mb-3">
+                    <div class="justify-content-center d-flex mb-3"style="font-family: 'Gill Sans', sans-serif; color:black;">
                       {{ $posts->links()}}
                     </div>
                   </div>

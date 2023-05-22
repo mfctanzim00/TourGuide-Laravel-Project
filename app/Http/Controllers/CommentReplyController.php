@@ -14,6 +14,13 @@ use Auth;
 class CommentReplyController extends Controller
 {
     public function store(Request $request, $comment) { 
+        $sentence = $request->message;
+        $word = explode(" ",$sentence); // this will output an array of words
+        $mentionedUser = substr($word[0], 1);
+   // print_r($store);
+   // dd(substr($store[0], 1));
+      //  dd($comment);
+       // dd($comment->name);
         $this->validate($request, ['message' => 'required|max:1000']);
         $commentReply = new CommentReply();
         $commentReply->comment_id = $comment;
@@ -22,7 +29,7 @@ class CommentReplyController extends Controller
         $commentReply->save();
 
         $commentNotificationController = new CommentNotificationController();
-        $commentNotificationController->store($request, $comment);
+        $commentNotificationController->store($mentionedUser, $comment);
 
         Toastr::success('success', 'The comment replied successfully!');
         

@@ -16,9 +16,8 @@ class CreateCommentNotificationsTable extends Migration
         Schema::create('comment_notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('post_id');
-            $table->text('comment_id');
-            $table->unsignedBigInteger('repliedUser_id');
-            $table->unsignedBigInteger('comment_replied_to_id');
+            $table->string('repliedUser');
+            $table->string('mentionedUser');
             $table->timestamps();
         });
     }

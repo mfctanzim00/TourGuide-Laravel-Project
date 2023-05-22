@@ -8,20 +8,20 @@
 
 @section('content')
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Comments</h1>
+                        <h1 style="font-family: 'Gill Sans', sans-serif; color:black;">Comments</h1>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8"style="font-family: 'Gill Sans', sans-serif; color:black;">
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</a></li>
                             <li>
                                 <a href="#" class="active"> Liked Posts </a>
                             </li>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="content mt-3">
+        <div class="content mt-3"style="font-family: 'Gill Sans', sans-serif; color:black;">
             <div class="animated fadeIn">
                 <div class="row">
                     <div class="col-md-12">
@@ -49,13 +49,13 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Liked Posts Table</strong>
+                                <strong class="card-title"style="font-family: 'Gill Sans', sans-serif; color:black;">Liked Posts Table</strong>
                               
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                     <thead>
-                                        <tr>
+                                        <tr style="font-family: 'Gill Sans', sans-serif; color:black;">
                                             <th>#</th>
                                             <th>Title</th>
                                             <th>Category</th>
@@ -63,7 +63,7 @@
                                             <th>Created_At</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         @foreach(Auth::user()->likedPosts as $key => $post)
                                         <tr>
                                             <td>{{$key+1}}</td>

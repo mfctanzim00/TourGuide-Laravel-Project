@@ -5,16 +5,16 @@
 @section('content')
 <div class="breadcrumbs">
     <div class="col-sm-4">
-        <div class="page-header float-left">
+        <div class="page-header float-left"style="font-family: 'Gill Sans', sans-serif; color:black;">
             <div class="page-title">
-                <h1>Dashboard</h1>
+                <h1 style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</h1>
             </div>
         </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="page-header float-right">
             <div class="page-title">
-                <ol class="breadcrumb text-right">
+                <ol class="breadcrumb text-right"style="font-family: 'Gill Sans', sans-serif; color:black;">
                     <li>Dashboard</li>
                     <li class="active">Profile</li>
                 </ol>
@@ -42,10 +42,10 @@
                 <div class="card-header">
                     <strong class="card-title mb-3">Profile Card</strong>
                 </div>
-                <div class="card-body">
+                <div class="card-body"style="font-family: 'Gill Sans', sans-serif; color:black;">
                     <div class="mx-auto d-block">
                         <img class="rounded-circle mx-auto d-block" src="{{asset('storage/user/'. $user->image)}}" alt="Card image cap">
-                        <h5 class="text-sm-center mt-2 mb-1">{{$user->name}}</h5>
+                        <h5 class="text-sm-center mt-2 mb-1"style="font-family: 'Gill Sans', sans-serif; color:black;">{{$user->name}}</h5>
                         <!-- <div class="location text-sm-center"><i class="fa fa-map-marker"></i> California, United States</div> -->
                     </div>
                     <hr>
@@ -61,65 +61,65 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Default Tab</h4>
+                    <h4 style="font-family: 'Gill Sans', sans-serif; color:black;">Default Tab</h4>
                 </div>
                 <div class="card-body">
                     <div class="default-tab">
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <nav style="font-family: 'Gill Sans', sans-serif; color:black;">
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                 <a class="nav-item nav-link active show" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Profile</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Credential</a>
                             </div>
                         </nav>
                         <div class="tab-content pl-3 pt-2" id="nav-tabContent">
                             <div class="tab-pane fade show active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <form action="{{route('user.profile.update')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="{{route('user.profile.update')}}" method="POST" enctype="multipart/form-data" class="form-horizontal"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                     @csrf
                                     @method('PUT')
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-3"><label class=" form-control-label">Email</label></div>
                                         <div class="col-12 col-md-9">
                                             <p class="form-control-static">{{$user->email}}</p>
                                         </div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-3"><label for="userid" class=" form-control-label">User Id</label></div>
                                         <div class="col-12 col-md-9"><input type="text" id="userid" name="userid" placeholder="Text" class="form-control" value="{{$user->userid}}"></div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-3"><label for="name" class=" form-control-label">Name</label></div>
                                         <div class="col-12 col-md-9"><input type="text" id="name" name="name" placeholder="Text" class="form-control" value="{{$user->name}}"></div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-3"><label for="file-input" class=" form-control-label">Profile Image</label></div>
                                         <div class="col-12 col-md-9"><input type="file" id="file-input" name="image" class="form-control-file"></div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-3"><label for="about" class=" form-control-label">About</label></div>
                                         <div class="col-12 col-md-9"><textarea name="about" id="about" rows="4" placeholder="Content..." class="form-control">{{$user->about}}</textarea></div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm">
+                                    <button type="submit" class="btn btn-primary btn-sm"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <i class="fa fa-dot-circle-o"></i> Update
                                     </button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                 <form action="{{route('user.profile.password')}}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                                     @csrf
                                     @method('PUT')
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-4"><label for="old_password" class=" form-control-label">Old Password</label></div>
                                         <div class="col-12 col-md-8"><input type="password" id="old_password" name="old_password" placeholder="Password" class="form-control"></div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-4"><label for="password" class=" form-control-label">New Password</label></div>
                                         <div class="col-12 col-md-8"><input type="password" id="password" name="password" placeholder="Password" class="form-control"></div>
                                     </div>
-                                    <div class="row form-group">
+                                    <div class="row form-group"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <div class="col col-md-4"><label for="password_confirmation" class=" form-control-label">Confirm Password</label></div>
                                         <div class="col-12 col-md-8"><input type="password" id="password_confirmation" name="password_confirmation" placeholder="Password" class="form-control"></div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm">
+                                    <button type="submit" class="btn btn-primary btn-sm"style="font-family: 'Gill Sans', sans-serif; color:black;">
                                         <i class="fa fa-dot-circle-o"></i> Update
                                     </button>
                                 </form>

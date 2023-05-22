@@ -16,7 +16,7 @@
             <a href="category.html">Category</a
             ><span class="lnr lnr-arrow-right"></span>
           </li>
-          <li><a href="single.html">Fashion</a></li>
+          <li><a href="single.html">Post</a></li>
         </ul>
       </div>
     </div>
@@ -176,7 +176,7 @@
                           </div>
                           <div class="">
                             <button class="btn-reply text-uppercase" id="reply-btn"
-                              onclick="showReplyForm('{{$comment->id}}','{{$reply->user->name}}')">reply</button
+                              onclick="showReplyForm('{{$comment->id}}','{{$reply->user->name}}')">332</button
                             >
                           </div>
                         </div>
@@ -201,7 +201,7 @@
                               <h5><a href="#">{{Auth::user()->name}}</a></h5>
                               <p class="date">{{date('D, d M Y H:i')}}</p>
                               <div class="row flex-row d-flex">
-                              <form action="{{route('reply.store', $comment->id) }}" method="POST">
+                              <form action="{{route('reply.store', $comment) }}" method="POST">
                               @csrf
                                 <div class="col-lg-12">
                                   <textarea
@@ -272,7 +272,7 @@
 @endsection
 @push('footer')
     <script type="text/javascript">
-    function showReplyForm(commentId,user) {
+    function showReplyForm(commentId, user) {
       var x = document.getElementById(`reply-form-${commentId}`);
       var input = document.getElementById(`reply-form-${commentId}-text`);
 

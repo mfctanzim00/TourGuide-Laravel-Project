@@ -6,7 +6,7 @@
       class="banner-area relative"
       id="home"
       data-parallax="scroll"
-      data-image-src="{{asset('frontend/img/header-bg.jpg')}}"
+      data-image-src="{{asset('frontend/img/Sunrise_Seen_from_the_Helipad_at_Sajek_Valley.jpg')}}"style="height: 820px;"
     >
       <div class="overlay-bg overlay"></div>
       <div class="container">
@@ -14,14 +14,10 @@
           <div
             class="banner-content d-flex align-items-center col-lg-12 col-md-12"
           >
-            <h1>
+            <h1 style="float: left;margin-left: 144px;font-family: 'Gill Sans', sans-serif; color:white;text-align:justify;" class="text-center">
               Welcome to TourGuide Website<br />
-              <p>
-                L<span style="font-size: 0.7em">earn</span> &nbspC<span
-                  style="font-size: 0.7em"
-                  >reate</span
-                >
-                &nbspS<span style="font-size: 0.7em">hare</span>
+              <p style="font-family: 'Gill Sans', sans-serif;font-size:25px;">
+              Explore the World
               </p>
             </h1>
           </div>
@@ -30,19 +26,12 @@
             class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12"
           >
             <div class="col-lg-6 flex-row d-flex meta-left no-padding">
-              <a href="/login" class="genric-btn info circle arrow mr-md-auto"
-                >Visit Yotube <span class="lnr lnr-arrow-right"></span
-              ></a>
+             
             </div>
             <div
               class="col-lg-6 flex-row d-flex meta-right no-padding justify-content-end"
             >
-              <div class="user-meta">
-                <h4 class="text-white">Mark wiens</h4>
-                <p>02 May, 2023 11:21 am</p>
-              </div>
-              <img class="img-fluid user-img" src="img/user.jpg" alt="" />
-            </div>
+             
           </div>
         </div>
       </div>
@@ -55,8 +44,8 @@
         <div class="row d-flex justify-content-center">
           <div class="menu-content pb-70 col-lg-8">
             <div class="title text-center">
-              <h1 class="mb-10">Latest Posts from all categories</h1>
-              <p>Find the Latest Post from all category.</p>
+              <h1 class="mb-10" style="font-family: 'Gill Sans', sans-serif; color:black;">Latest Posts from all categories</h1>
+              <p style="font-family: 'Gill Sans', sans-serif; color:black;">Find the Latest Post from all category.</p>
             </div>
           </div>
         </div>
@@ -70,8 +59,8 @@
 </div> -->
 <div  style="width:300px">
                 <img src="{{ asset('storage/post/'.$post->image) }}" alt="$post->image" style="width:1000px; height: 200px;" class="img-fluid " />
-                <p class="date" style="float: left;margin-left: -1px; width: 140px;">{{$post->created_at->diffForHumans()}}</p>
-                <h4 style="float: left;margin-left: -144px; margin-top: 81px;"><a href=" {{ route('post', $post->slug) }} "> {{$post->title}} </a></h4>
+                <p class="date" style="float: left;margin-left: -1px; width: 140px;"style="font-family: 'Gill Sans', sans-serif; color:black;">{{$post->created_at->diffForHumans()}}</p>
+                <h4 style="float: left;margin-left: -144px; margin-top: 81px;"><a href=" {{ route('post', $post->slug) }} "style="font-family: 'Gill Sans', sans-serif; color:black;"> {{$post->title}} </a></h4>
             </div>
             </div>
             @endforeach
@@ -85,8 +74,8 @@
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
 					<div class="title text-center">
-						<h1 class="mb-10">Hot topics of this Week</h1>
-						<p>The posts which are most views in this week.</p>
+						<h1 class="mb-10"style="font-family: 'Gill Sans', sans-serif; color:black;">Hot topics of this Week</h1>
+						<p style="font-family: 'Gill Sans', sans-serif; color:black;">The posts which are most views in this week.</p>
 					</div>
 				</div>
 			</div>
@@ -95,14 +84,14 @@
                     @foreach($posts as $post)
 					<div class="single-posts col-lg-4 col-sm-4 mb-3">
 						<img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="{{$post->image}}"style="width:1000px; height: 200px;">
-						<div class="date mt-20 mb-20">{{$post->created_at->diffForHumans()}}</div>
+						<div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:white;">{{$post->created_at->diffForHumans()}}</div>
 						<div class="detail">
-							<a href=" {{ route('post', $post->slug) }} "><h4 class="pb-20">{{$post->title}}</h4></a>
-							<p>
+							<a href=" {{ route('post', $post->slug) }} "><h4 class="pb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">{{$post->title}}</h4></a>
+							<p style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">
              <!-- {!!Str::limit($post->body,400)!!} -->
-             {!!  substr(strip_tags($post->body), 0, 200) !!} .... <h4><a href="{{ route('post', $post->slug) }}">See More</a></h4>
+             {!!  substr(strip_tags($post->body), 0, 150) !!} ..<a href="{{ route('post', $post->slug) }}"style="font-size:12px;color:blue;font-family: 'Gill Sans', sans-serif;">See More</a>
 							</p>
-							<p class="" footer="">
+							<p class="" footer=""style="font-family: 'Gill Sans', sans-serif; color:black;">
 								<br>
 								</p>
                                 <ul class="d-flex space-around">
@@ -141,15 +130,15 @@
           <p>Checkout the full tutorial how this site is made on <span class="c1">Youtube</span>.</p>
 					<h4>About the Creator</h4>
 					<br>
-					<p>I am <span class="c1">Full stack Web Developer</span> specialized <span class="c1">LARAVEL</span> - PHP. Currently Studing GEOSPATIAL SCIENCE and learning <span class="c1">GIS Web Applications Development</span>. </p>
+					<p style="font-family: 'Gill Sans', sans-serif; color:black;">I am <span class="c1"style="font-family: 'Gill Sans', sans-serif; color:black;">Full stack Web Developer</span> specialized <span class="c1"style="font-family: 'Gill Sans', sans-serif; color:black;">LARAVEL</span> - PHP. Currently Studing GEOSPATIAL SCIENCE and learning <span class="c1"style="font-family: 'Gill Sans', sans-serif; color:black;">GIS Web Applications Development</span>. </p>
 					<br>
-					<h4>Email: <span style="font-size: medium; font-weight: lighter;">subhadipghorui105@gmail.com</span></h4>
+					<h4>Email: <span style="font-size: medium; font-weight: lighter;"style="font-family: 'Gill Sans', sans-serif; color:black;">subhadipghorui105@gmail.com</span></h4>
 					<br>
 					<div class="col-md-12 d-flex justify-content-center py-3 mt-2">
-						<a href="https://subhadipghorui.github.io" class="genric-btn info circle arrow mr-md-auto" target="_blank">Know More<span class="lnr lnr-arrow-right"></span></a>
+						<a href="https://subhadipghorui.github.io" class="genric-btn info circle arrow mr-md-auto" target="_blank"style="font-family: 'Gill Sans', sans-serif; color:black;">Know More<span class="lnr lnr-arrow-right"style="font-family: 'Gill Sans', sans-serif; color:black;"></span></a>
 					</div>
 				</div>
-				<div class="col-lg-6 team-right d-flex justify-content-center">
+				<div class="col-lg-6 team-right d-flex justify-content-center"style="font-family: 'Gill Sans', sans-serif; color:black;">
 					<div class="row">
 						<div class="single-team">
 							<div class="thumb">
@@ -159,7 +148,7 @@
 									<a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
 								</div>
 							</div>
-							<div class="meta-text mt-30 text-center">
+							<div class="meta-text mt-30 text-center"style="font-family: 'Gill Sans', sans-serif; color:black;">
 								<h4>Tanzim Chowdhury</h4>
 								<p>Creator</p>
 							</div>

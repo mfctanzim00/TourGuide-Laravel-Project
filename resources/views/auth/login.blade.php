@@ -4,13 +4,13 @@
   background-size: cover;font-family: 'Gill Sans', sans-serif;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 border p-4" style="font-family: 'Gill Sans', sans-serif;">
+                <div class="col-md-8  p-4" style="font-family: 'Gill Sans', sans-serif;">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <h3>Login to your Account</h3>
+                        <h3 class="text-light">Login to your Account</h3>
                         <hr>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
+                        <div class="form-group" style="font-family: 'Gill Sans', sans-serif;">
+                            <label for="exampleInputEmail1"class="text-light">Email address</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -20,8 +20,8 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
+                        <div class="form-group" style="font-family: 'Gill Sans', sans-serif;">
+                            <label for="exampleInputPassword1"class="text-light">Password</label>
                             <input id="password" type="password"
                                 class="form-control @error('password') is-invalid @enderror" name="password" required
                                 autocomplete="current-password">
@@ -31,8 +31,8 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="row mb-3">
+                        </div> 
+                        <div class="row mb-3 text-light" style="font-family: 'Gill Sans', sans-serif;">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
@@ -44,13 +44,13 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary float-left">Login Now</button>
+                        <button type="submit" class="btn btn-primary float-left text-light" style="font-family: 'Gill Sans', sans-serif;">Login Now</button>
 
-                        <div class="row d-flex justify-content-center space-between" style="margin-left:469px;">
-                            <a href="{{ url('/login/google') }} " class="btn btn-outline-info ">Sign in with Google <i class="fa fa-google-plus" style="color:rgb(185,57,11);"></i></a><span class="text-dark font-weight-bold mt-3"></span>
+                        <div class="row d-flex justify-content-center space-between" style="margin-left:469px;font-family: 'Gill Sans', sans-serif;">
+                            <a href="{{ url('/login/google') }} " class="btn btn-outline-info text-light">Sign in with Google <i class="fa fa-google-plus" style="color:rgb(185,57,11);"></i></a><span class="text-dark font-weight-bold mt-3"></span>
                         </div>
 
-                        <div class="float-right">
+                        <div class="float-right" style="font-family: 'Gill Sans', sans-serif;">
 
 
                             @if (Route::has('password.request'))
@@ -62,8 +62,8 @@
 
                     </form>
                 </div>
-                <div class="col-md-4 border p-4">
-                    <h4 class="py-4">Don't have an account ?</h4>
+                <div class="col-md-4 p-4 text-light" style="font-family: 'Gill Sans', sans-serif;">
+                    <h4 class="py-4 text-light">Don't have an account ?</h4>
                     <p>
                         <a href="{{ route('register') }}" class="btn btn-success btn-lg">Create New Account</a>
                     </p>

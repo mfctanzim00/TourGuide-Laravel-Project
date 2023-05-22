@@ -13,7 +13,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div cl style="font-family: 'Gill Sans', sans-serif; color:black;"ass="page-title">
-                        <h1>Comments</h1>
+                        <h1>Comment Notifications</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</a></li>
                             <li>
-                                <a href="#" class="active"style="font-family: 'Gill Sans', sans-serif; color:black;">Comments</a>
+                                <a href="#" class="active"style="font-family: 'Gill Sans', sans-serif; color:black;">Comment Notifications</a>
                             </li>
                         </ol>
                     </div>
@@ -57,26 +57,19 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Comment</th>
-                                            <th>User</th>
                                             <th>Post</th>
+                                            <th>Commentator</th>
                                             <th>Created_At</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($comments as $key => $comment)
+                                        @foreach($notifications as $key => $notification)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $comment->comment }}</td>
-                                            <td>{{ $comment->user->name }}</td>
-                                            <td> <a href=" {{ route('post', $comment->post->slug) }} "> {{ $comment->post->title }} </a> </td>
-                                            <td>{{ $comment->created_at->diffForHumans() }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#deleteModal-{{$comment->id}}">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </button>
-                                            </td>
+                                            <!-- <td>{{ $notification->post_id }}</td> -->
+                                            <td> <a href="{{ route('post', $notification->post->slug) }}"> {{ $notification->post->title }} </a> </td>
+                                            <td>{{ $notification->repliedUser }}</td>
+                                            <td>{{ $notification->created_at->diffForHumans() }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -88,43 +81,6 @@
 
                 </div>
             </div><!-- .animated -->
-
-            <div class="animated">
-
-                @foreach($comments as $comment)
-
-                <div class="modal fade" id="deleteModal-{{$comment->id}}" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticModalLabel"style="font-family: 'Gill Sans', sans-serif; color:black;">Delete Comment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p style="font-family: 'Gill Sans', sans-serif; color:black;">
-                                    The comment will be deleted !!
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"style="font-family: 'Gill Sans', sans-serif; color:black;">Cancel</button>
-                                <button type="button" class="btn btn-primary" onclick="event.preventDefault();
-                                                     document.getElementById('deletecomment-{{ $comment->id }}').submit();"style="font-family: 'Gill Sans', sans-serif; color:black;">Confirm</button>
-                                <form action="{{ route('user.comment.destroy', $comment->id) }}" style="display: none" id="deletecomment-{{ $comment->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @endforeach
-
-
-
-            </div>
 
         </div><!-- .content -->
 

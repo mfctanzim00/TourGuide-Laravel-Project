@@ -44,6 +44,7 @@ Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts
 Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store')->middleware('auth');
 Route::post('/like-post/{post}', [App\Http\Controllers\HomeController::class, 'likePost'])->name('post.like')->middleware('auth');
+Route::get('/comment-notification', [App\Http\Controllers\CommentNotificationController::class, 'index'])->name('comment-notification.index')->middleware('auth');
 
 
 ////    Admin   

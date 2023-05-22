@@ -2,13 +2,13 @@
 
 @section('content')
 <!-- Start banner Area -->
-    <section class="generic-banner relative">
+    <section class="generic-banner relative"style="font-family: 'Gill Sans', sans-serif; color:black;">
       <div class="container">
         <div class="row height align-items-center justify-content-center">
           <div class="col-lg-10">
             <div class="generic-banner-content">
-              <h2 class="text-white text-center">The Category Page</h2>
-              <p class="text-white">
+              <h2 class=" text-center"style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">The Category Page</h2>
+              <p style="font-family: 'Gill Sans', sans-serif; color:black;">
                 This page shows all the categories that available by the site
               </p>
             </div>
@@ -27,8 +27,8 @@
             @foreach($categories as $category)
             <div class="col-lg-4 col-md-6 single-fashion">
               <img class="img-fluid" src=" {{ asset('storage/category/'.$category->image) }} " alt="{{$category->image}}" style="width:1000px; height: 200px;"/>
-              <p class="date"> {{ $category->created_at->format('D, d M Y H:i') }} </p>
-              <h4><a href=" {{ route('category.post', $category->slug) }} "> <h4> {{ $category->name }} </h4> </p>
+              <p class="date"style="font-family: 'Gill Sans', sans-serif; color:white;"> {{ $category->created_at->format('D, d M Y H:i') }} </p>
+              <h4><a href=" {{ route('category.post', $category->slug) }} "> <h4 style="font-family: 'Gill Sans', sans-serif; color:black;"> {{ $category->name }} </h4> </p>
             </div>
             @endforeach
           </div>
@@ -42,8 +42,8 @@
           <div class="row">
             <div class="col-lg-3 col-md-12">
               <div class="single-footer-widget">
-                <h6>Top Products</h6>
-                <ul class="footer-nav">
+                <h6 style="font-family: 'Gill Sans', sans-serif; color:black;">Top Products</h6>
+                <ul class="footer-nav"style="font-family: 'Gill Sans', sans-serif; color:black;">
                   <li><a href="#">Managed Website</a></li>
                   <li><a href="#">Manage Reputation</a></li>
                   <li><a href="#">Power Tools</a></li>
@@ -51,8 +51,8 @@
                 </ul>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="single-footer-widget newsletter">
+            <div class="col-lg-6 col-md-12"style="font-family: 'Gill Sans', sans-serif; color:black;">
+              <div class="single-footer-widget newsletter"style="font-family: 'Gill Sans', sans-serif; color:black;">
                 <h6>Newsletter</h6>
                 <p>
                   You can trust us. we only send promo offers, not a single
@@ -121,8 +121,7 @@
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              All rights reserved | This template is made with
-              <i class="fa fa-heart-o" aria-hidden="true"></i> by
+              All rights reserved | This template is made by
               <a href="https://colorlib.com" target="_blank">Colorlib</a>
             </p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

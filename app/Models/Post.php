@@ -23,6 +23,10 @@ class Post extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
+    public function notifications() {
+        return $this->hasMany('App\Models\CommentNotification');
+    }
+
     // Many to many
     public function  likedUser() {
         return $this->belongsToMany('App\Models\User')->withTimestamps();
