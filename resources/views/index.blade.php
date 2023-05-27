@@ -87,14 +87,14 @@
 						<div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:white;">{{$post->created_at->diffForHumans()}}</div>
 						<div class="detail">
 							<a href=" {{ route('post', $post->slug) }} "><h4 class="pb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">{{$post->title}}</h4></a>
-							<p style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">
+							<p style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;margin-top: -3px;">
              <!-- {!!Str::limit($post->body,400)!!} -->
              {!!  substr(strip_tags($post->body), 0, 150) !!} ..<a href="{{ route('post', $post->slug) }}"style="font-size:12px;color:blue;font-family: 'Gill Sans', sans-serif;">See More</a>
 							</p>
-							<p class="" footer=""style="font-family: 'Gill Sans', sans-serif; color:black;">
+							<!-- <p class="" footer=""style="font-family: 'Gill Sans', sans-serif; color:black;">
 								<br>
-								</p>
-                                <ul class="d-flex space-around">
+								</p> -->
+                                <ul class="d-flex space-around py-2 my-3" style="    margin-top: -22px;">
 									<li><a href="javascript:void(0);" onclick=" toastr.info('To add to your favorite list you have to login first.', 'Info', { closeButton: true, progressBar: true, })"><i class="fa fa-heart-o" aria-hidden="true"></i><span> {{ $post->likedUser->count() }} </span></a></li>
 									<li><i class="fa fa-comment-o" aria-hidden="true"></i><span> {{ $post->comments->count() }} </span></li>
 									<li><i class="fa fa-eye" aria-hidden="true"></i> <span> {{ $post->view_count }} </span></li>
@@ -109,7 +109,7 @@
 	</section>
 
     <!-- Start team Area -->
-    <section class="team-area section-gap" id="about">
+    <!-- <section class="team-area section-gap" id="about">
 		<div class="container">
 			<div class="row d-flex justify-content-center">
 				<div class="menu-content pb-70 col-lg-8">
@@ -157,6 +157,58 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
+	<section class="team-area section-gap" id="about">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="menu-content pb-70 col-lg-8">
+          <div class="title text-center">
+            <h1 class="mb-10" style="font-family: 'Gill Sans', sans-serif; font-weight:bold;">About Us</h1>
+
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center d-flex align-items-center"style="font-family: 'Gill Sans', sans-serif;">
+        <div class="col-lg-6 team-left"style="font-family: 'Gill Sans', sans-serif;">
+          {{-- <p style="font-family: 'Gill Sans', sans-serif;">
+            Find a blogs and tutorials related to Internet of things, Web Designe, Web Development, GIS Web applications and more.
+          </p> --}}
+          {{-- <p style="font-family: 'Gill Sans', sans-serif;">
+            This site is made with laravel framework..
+          </p> --}}
+
+
+          <p style="font-family: 'Gill Sans', sans-serif;text-align:justify; ">
+              We will work with you to plan a worry free adventure that meets your travel needs,expectations and budget.When you plan your vacation with us we are there through out the entire process.This means making ourselves available to you before during and after travel.
+
+          </p>
+
+
+
+          <br>
+          <div class="col-md-12 d-flex justify-content-center py-3 mt-2">
+            <a href="https://www.facebook.com/mfc.tanzim/" class="genric-btn btn-warning circle arrow mr-md-auto" target="_blank">Read More<span class="lnr lnr-arrow-right"></span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 team-right d-flex justify-content-center">
+          <div class="row">
+            <div class="single-team">
+              <div class="thumb">
+                <img class="img-fluid  mx-auto" src="{{asset('frontend/img/default.jpg')}}" alt="admin">
+                <div class="align-items-center justify-content-center d-flex">
+                  <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                  <a href="#"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                </div>
+              </div>
+              <div class="meta-text mt-30 text-center">
+                 <h4>Tanzim Chowdhury</h4>
+                <p>Creator</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <!-- End team Area -->
 @endsection

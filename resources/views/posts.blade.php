@@ -7,17 +7,17 @@
   <div class="container">
     <div class="row justify-content-between align-items-center d-flex">
       <div class="col-lg-8 top-left">
-        <h1 class=" mb-20"style="font-family: 'Gill Sans', sans-serif;  color:black;">All Post</h1>
+        <h1 class=" mb-20"style="font-family: 'Gill Sans', sans-serif;  color:black;">All Posts</h1>
         <ul>
           <li>
-            <a href="index.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Home</a>
+            <a href="/"style="font-family: 'Gill Sans', sans-serif; color:black;">Home</a>
             <span class="lnr lnr-arrow-right" style="color:black;"></span>
           </li>
           <li>
-            <a href="category.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Category</a>
+            <a href="/categories"style="font-family: 'Gill Sans', sans-serif; color:black;">Category</a>
             <span class="lnr lnr-arrow-right" style="color:black;"></span>
           </li>
-          <li><a href="single.html"style="font-family: 'Gill Sans', sans-serif;  color:black;;">Posts</a></li>
+          <li><a href="/posts"style="font-family: 'Gill Sans', sans-serif;  color:black;;">Posts</a></li>
         </ul>
       </div>
     </div>
@@ -40,7 +40,7 @@
                   <div class="single-posts"style="font-family: 'Gill Sans', sans-serif; color:black;">
                     <div>
                       <img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="{{$post->image}}"style="width:1000px; height: 200px;"/>
-                      <div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif;  color:white;">10 Jan 2018</div>
+                      <div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif;  color:white;">{{ $post->created_at->format('D, d M Y H:i') }}</div>
                     </div>
                     <div class="detail">
                       <a href=" {{ route('post', $post->slug) }} ">

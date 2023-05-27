@@ -7,17 +7,17 @@
       <div class="container"style="font-family: 'Gill Sans', sans-serif; color:black;">
         <div class="row justify-content-between align-items-center d-flex">
           <div class="col-lg-8 top-left">
-            <h1 class=" mb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">All Post of Category 1</h1>
+            <h1 class=" mb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">All Posts of {{$category->name}}</h1>
             <ul>
               <li>
-                <a href="index.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Home</a
+                <a href="/"style="font-family: 'Gill Sans', sans-serif; color:black;">Home</a
                 ><span class="lnr lnr-arrow-right"></span>
               </li>
               <li>
-                <a href="category.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Category</a
+                <a href="/categories"style="font-family: 'Gill Sans', sans-serif; color:black;">Category</a
                 ><span class="lnr lnr-arrow-right"></span>
               </li>
-              <li><a href="single.html"style="font-family: 'Gill Sans', sans-serif; color:black;">Posts</a></li>
+              <li><a href="/posts"style="font-family: 'Gill Sans', sans-serif; color:black;">Posts</a></li>
             </ul>
           </div>
         </div>
@@ -48,16 +48,16 @@
                         >
                         <p style="font-family: 'Gill Sans', sans-serif; color:black;text-align:justify;">
                         <!-- {!!Str::limit($post->body, 200)!!} -->
-                        {!!  substr(strip_tags($post->body), 0, 200) !!}
+                        {!!  substr(strip_tags($post->body), 0, 200) !!}..<a href="{{ route('post',$post->slug) }}" style="font-size:12px;color:blue;font-family: 'Gill Sans', sans-serif;">See More</a>
                         </p>
                         <p class="footer pt-20">
                           <i class="fa fa-heart-o" aria-hidden="true"></i>
-                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">06 Likes</a>
+                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">{{ $post->likedUser->count() }} Likes</a>
                           <i
                             class="ml-20 fa fa-comment-o"
                             aria-hidden="true"
                           ></i>
-                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">02 Comments</a>
+                          <a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">{{ $post->comments->count() }} Comments</a>
                         </p>
                       </div>
                     </div>

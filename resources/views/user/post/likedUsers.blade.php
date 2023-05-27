@@ -13,7 +13,7 @@
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1>Replied Comments</h1>
+                        <h1>Post</h1>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <ol class="breadcrumb text-right">
                             <li><a href="#">Dashboard</a></li>
                             <li>
-                                <a href="#" class="active">Replied Comments</a>
+                                <a href="#" class="active">Post Table</a>
                             </li>
                         </ol>
                     </div>
@@ -49,36 +49,24 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Reply Comments Table</strong>
-                              
+                                <strong class="card-title"> Post - "{{ $post->title }}" Liked User Table</strong>
+                          
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Replied Comment</th>
-                                            <th>To Comment</th>
-                                            <th>Replied User</th>
-                                            <th>Post</th>
-                                            <th>Created_At</th>
-                                            <th>Action</th>
+                                            <th>User Name</th>
+                                            <th>User Id</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($reply_comments as $key => $reply_comment)
+                                        @foreach($post->likedUser as $key => $likedUser)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $reply_comment->message }}</td>
-                                            <td>{{ $reply_comment->comment->comment }}</td>
-                                            <td>{{ $reply_comment->user->name }}</td>
-                                            <td> <a href=" {{ route('post', $reply_comment->comment->post->slug) }} "> {{ $reply_comment->comment->post->title }} </a> </td>
-                                            <td>{{ $reply_comment->created_at->diffForHumans() }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#deleteModal-{{$reply_comment->id}}">
-                                                    <i class="fa fa-trash-o"></i>
-                                                </button>
-                                            </td>
+                                            <td>{{ $likedUser->name }}</td>
+                                            <td>{{ $likedUser->id }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -89,49 +77,9 @@
 
 
                 </div>
-            </div><!-- .animated -->
-
-            <div class="animated">
-
-                @foreach($reply_comments as $reply_comment)
-
-                <div class="modal fade" id="deleteModal-{{$reply_comment->id}}" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticModalLabel">Delete Comment</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>
-                                    The comment will be deleted !!
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" onclick="event.preventDefault();
-                                                     document.getElementById('deletecomment-{{ $reply_comment->id }}').submit();">Confirm</button>
-                                <form action="{{ route('admin.reply-comment.destroy', $reply_comment->id) }}" style="display: none" id="deletecomment-{{ $reply_comment->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                @endforeach
-
-
-
             </div>
+    </div>
 
-        </div><!-- .content -->
-
-
-    </div><!-- /#right-panel -->
 
 
 @endsection

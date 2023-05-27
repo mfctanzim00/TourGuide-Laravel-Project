@@ -29,7 +29,7 @@ class CommentReplyController extends Controller
         $commentReply->save();
 
         $commentNotificationController = new CommentNotificationController();
-        $commentNotificationController->store($mentionedUser, $comment);
+        $commentNotificationController->store($mentionedUser, $comment, $request->message);
 
         Toastr::success('success', 'The comment replied successfully!');
         

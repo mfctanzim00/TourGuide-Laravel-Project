@@ -18,6 +18,7 @@ class CreateCommentNotificationsTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->string('repliedUser');
             $table->string('mentionedUser');
+            $table->longText('message');
             $table->timestamps();
         });
     }

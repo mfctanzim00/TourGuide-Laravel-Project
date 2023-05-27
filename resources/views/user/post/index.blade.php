@@ -8,12 +8,12 @@
 
 @section('content')
 
-    <div id="right-panel" class="right-panel"style="font-family: 'Gill Sans', sans-serif; color:black;">
+    <div id="right-panel" class="right-panel">
         <div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
-                    <div cl style="font-family: 'Gill Sans', sans-serif; color:black;"ass="page-title">
-                        <h1>Notifications</h1>
+                    <div class="page-title">
+                        <h1>Post</h1>
                     </div>
                 </div>
             </div>
@@ -21,9 +21,9 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#"style="font-family: 'Gill Sans', sans-serif; color:black;">Dashboard</a></li>
+                            <li><a href="#">Dashboard</a></li>
                             <li>
-                                <a href="#" class="active"style="font-family: 'Gill Sans', sans-serif; color:black;">Notifications</a>
+                                <a href="#" class="active">Post Table</a>
                             </li>
                         </ol>
                     </div>
@@ -49,32 +49,41 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Notifications Table</strong>
-                              
+                                <strong class="card-title">Post Table</strong>
+                                <a href="{{ route('user.post.create') }}" class="btn btn-primary">
+                                    <i class="fa fa-plus"></i>
+                                </a>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered"style="font-family: 'Gill Sans', sans-serif; color:black;">
-                                <thead>
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Post</th>
-                                            <th>Comment</th>
-                                            <th>Commentator</th>
-                                            <th>Created_At</th>
+                                            <th>Title</th>
+                                            <th>Slug</th>
+                                            <th>Views & Likes</th>
+                                            <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($notifications as $key => $notification)
+                                        @foreach($posts as $key => $post)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <!-- <td>{{ $notification->post_id }}</td> -->
-                                            <td> <a href="{{ route('post', $notification->post->slug) }}"> {{ $notification->post->title }} </a> </td>
-                                            <td>{{ $notification->message }}</td>
-                                            <td>{{ $notification->repliedUser }}</td>
-                                            <td>{{ $notification->created_at->diffForHumans() }}</td>
+                                            <td>{{ $post->title }}</td>
+                                            <td>{{ $post->slug }}</td>
+                                            <td><a href="{{ route('user.post.like.users', $post->id) }}" class="btn btn-danger" type="button"><i class="fa fa-heart"></i> {{ $post->likedUser->count() }}</a> <button class="btn btn-info" type="button"><i class="fa fa-eye"></i> {{ $post->view_count }} </button> </td>
+                                            <td>{{ $post->created_at }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#deleteModal-{{$notification->id}}">
+                                                <a href="{{ route('user.post.show', $post->id) }}" class="btn btn-info">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+
+                                                <a href="{{ route('user.post.edit', $post->id) }}" class="btn btn-success">
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                            
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$post->id}}">
                                                     <i class="fa fa-trash-o"></i>
                                                 </button>
                                             </td>
@@ -92,27 +101,27 @@
 
             <div class="animated">
 
-                @foreach($notifications as $notification)
+                @foreach($posts as $post)
 
-                <div class="modal fade" id="deleteModal-{{$notification->id}}" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
+                <div class="modal fade" id="deleteModal-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true" data-backdrop="static">
                     <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticModalLabel"style="font-family: 'Gill Sans', sans-serif; color:black;">Delete Notification</h5>
+                                <h5 class="modal-title" id="staticModalLabel">Delete Post</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p style="font-family: 'Gill Sans', sans-serif; color:black;">
-                                    The Notification will be deleted !!
+                                <p>
+                                    The Post will be deleted !!
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"style="font-family: 'Gill Sans', sans-serif; color:black;">Cancel</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" onclick="event.preventDefault();
-                                                     document.getElementById('deletenotification-{{ $notification->id }}').submit();"style="font-family: 'Gill Sans', sans-serif; color:black;">Confirm</button>
-                                <form action="{{ route('comment-notification.destroy', $notification->id) }}" style="display: none" id="deletenotification-{{ $notification->id }}" method="POST">
+                                                     document.getElementById('deletepost-{{ $post->id }}').submit();">Confirm</button>
+                                <form action="{{ route('user.post.destroy', $post->id) }}" style="display: none" id="deletepost-{{ $post->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                 </form>

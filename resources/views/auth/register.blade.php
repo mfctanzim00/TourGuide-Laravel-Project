@@ -29,7 +29,7 @@
               <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">First Name</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">Name</label>
                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">User Id</label>
+                    <label for="exampleInputEmail1"class="text-light" style="font-family: 'Gill Sans', sans-serif;">Username</label>
                      <input id="userid" type="text" class="form-control @error('userid') is-invalid @enderror" name="userid" value="{{ old('userid') }}" required autocomplete="userid" autofocus>
 
                                 @error('userid')

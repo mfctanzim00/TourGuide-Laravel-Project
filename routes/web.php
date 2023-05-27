@@ -45,6 +45,7 @@ Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, '
 Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store')->middleware('auth');
 Route::post('/like-post/{post}', [App\Http\Controllers\HomeController::class, 'likePost'])->name('post.like')->middleware('auth');
 Route::get('/comment-notification', [App\Http\Controllers\CommentNotificationController::class, 'index'])->name('comment-notification.index')->middleware('auth');
+Route::delete('/comment-notification/delete/{id}', [App\Http\Controllers\CommentNotificationController::class, 'destroy'])->name('comment-notification.destroy');
 
 
 ////    Admin   
@@ -80,6 +81,8 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middl
 	Route::get('/reply-comments', 'CommentReplyController@index')->name('reply-comment.index');
 	Route::delete('/reply-comment/{id}', 'CommentReplyController@destroy')->name('reply-comment.destroy');
 	Route::get('/user-liked-posts', 'DashboardController@likedPosts')->name('like.posts');
+	Route::resource('post', 'PostController');
+	Route::get('/post-liked-users/{post}', 'PostController@likedUsers')->name('post.like.users');
 });
 
 

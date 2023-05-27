@@ -69,9 +69,14 @@
                             <i class="menu-icon fa fa-file"></i>Comments 
                         </a>
                     </li>
-                    <li class="active">
+                    <!-- <li class="active">
                         <a href="{{ route('user.reply-comment.index') }}"> 
                             <i class="menu-icon fa fa-file"></i>Replied Comments 
+                        </a>
+                    </li> -->
+                    <li class="active">
+                        <a href="{{ route('user.post.index') }}"> 
+                            <i class="menu-icon fa fa-file"></i>Posts 
                         </a>
                     </li>
                     <li class="active">

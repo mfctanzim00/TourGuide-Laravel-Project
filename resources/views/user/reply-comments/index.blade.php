@@ -58,8 +58,8 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Replied Comment</th>
-                                            <th>To Comment</th>
-                                            <th>Post</th>
+                                            <!-- <th>To Comment</th>
+                                            <th>Post</th> -->
                                             <th>Created_At</th>
                                             <th>Action</th>
                                         </tr>
@@ -69,9 +69,9 @@
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td>{{ $reply_comment->message }}</td>
-                                            <td>{{ $reply_comment->comment->comment }}</td>
+                                            <!-- <td>{{ $reply_comment->message->comment }}</td>
                                              <td> <a href=" {{ route('post', $reply_comment->comment->post->slug) }} "> {{ $reply_comment->comment->post->title }} </a> </td>
-                                            <td>{{ $reply_comment->created_at->diffForHumans() }}</td>
+                                            <td>{{ $reply_comment->created_at->diffForHumans() }}</td> -->
                                             <td>
                                                 <button type="button" class="btn btn-danger mb-1" data-toggle="modal" data-target="#deleteModal-{{$reply_comment->id}}">
                                                     <i class="fa fa-trash-o"></i>

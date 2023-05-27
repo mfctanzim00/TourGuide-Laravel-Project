@@ -53,7 +53,7 @@ class HomeController extends Controller
     {
         $category = Category::where('slug', $slug)->first();
         $posts = $category->posts()->where('status', 1)->paginate(10);
-        return view('categoryPost', compact('posts'));
+        return view('categoryPost', compact('posts', 'category'));
     }
 
     public function search(Request $request)

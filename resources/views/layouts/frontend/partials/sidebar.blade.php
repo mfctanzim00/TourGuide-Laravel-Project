@@ -24,7 +24,7 @@
         @foreach ($categories as $category)
         <li>
             <a href="{{route('category.post', $category->slug)}}"style="font-family: 'Gill Sans', sans-serif;color:black;">{{$category->name}} <span>{{$category->posts->count()}}</span></a>
-          </li>
+        </li>
         @endforeach
       </ul>
     </div>
@@ -43,9 +43,9 @@
         <p style="font-family: 'Gill Sans', sans-serif;color:black;">
         {{$recentPost->created_at->diffForHumans()}}
           <span>
-            <i class="fa fa-heart-o" aria-hidden="true"></i> 06
+            <i class="fa fa-heart-o" aria-hidden="true"></i> {{ $recentPost->likedUser->count() }}
             <i class="fa fa-comment-o" aria-hidden="true"></i
-            >02</span
+            >{{ $recentPost->comments->count() }}</span
           >
         </p>
       </div>

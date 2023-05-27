@@ -47,7 +47,7 @@
                         <button type="submit" class="btn btn-primary float-left text-light" style="font-family: 'Gill Sans', sans-serif;">Login Now</button>
 
                         <div class="row d-flex justify-content-center space-between" style="margin-left:469px;font-family: 'Gill Sans', sans-serif;">
-                            <a href="{{ url('/login/google') }} " class="btn btn-outline-info text-light">Sign in with Google <i class="fa fa-google-plus" style="color:rgb(185,57,11);"></i></a><span class="text-dark font-weight-bold mt-3"></span>
+                            <a href="{{ url('login/google') }} " class="btn btn-outline-info text-light">Sign in with Google <i class="fa fa-google-plus" style="color:rgb(185,57,11);"></i></a><span class="text-dark font-weight-bold mt-3"></span>
                         </div>
 
                         <div class="float-right" style="font-family: 'Gill Sans', sans-serif;">
