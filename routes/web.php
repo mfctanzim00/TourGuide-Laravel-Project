@@ -26,7 +26,7 @@ Route::get('/admin/users', function () {
     return view('admin.users.index');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 // Social Login
@@ -41,10 +41,10 @@ Route::get('/categories', [App\Http\Controllers\HomeController::class, 'categori
 Route::get('/category/{slug}', [App\Http\Controllers\HomeController::class, 'categoryPost'])->name('category.post');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::get('/tag/{name}', [App\Http\Controllers\HomeController::class, 'tagPosts'])->name('tag.posts');
-Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth');
-Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store')->middleware('auth');
-Route::post('/like-post/{post}', [App\Http\Controllers\HomeController::class, 'likePost'])->name('post.like')->middleware('auth');
-Route::get('/comment-notification', [App\Http\Controllers\CommentNotificationController::class, 'index'])->name('comment-notification.index')->middleware('auth');
+Route::post('/comment/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.store')->middleware('auth', 'verified');
+Route::post('/comment-reply/{comment}', [App\Http\Controllers\CommentReplyController::class, 'store'])->name('reply.store')->middleware('auth', 'verified');
+Route::post('/like-post/{post}', [App\Http\Controllers\HomeController::class, 'likePost'])->name('post.like')->middleware('auth', 'verified');
+Route::get('/comment-notification', [App\Http\Controllers\CommentNotificationController::class, 'index'])->name('comment-notification.index')->middleware('auth', 'verified');
 Route::delete('/comment-notification/delete/{id}', [App\Http\Controllers\CommentNotificationController::class, 'destroy'])->name('comment-notification.destroy');
 
 
@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 ////    User
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user']], function(){
+Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'User', 'middleware' => ['auth', 'user', 'verified']], function(){
 
 	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::get('profile', 'DashboardController@showProfile')->name('profile');

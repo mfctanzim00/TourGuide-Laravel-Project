@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +19,11 @@ use Illuminate\Support\Facades\Hash;
 class DashboardController extends Controller
 {
     public function index(){
-    	return view('admin.index');
+    	$posts = Post::all();
+        $comments = Comment::latest()->get();
+        $users = User::all();
+        $categories = Category::all();
+   	    return view('admin.index',compact('posts','comments','users','categories'));
     }
 
     public function showProfile(){

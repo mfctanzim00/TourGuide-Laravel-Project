@@ -69,7 +69,12 @@
                       <i class="fa fa-heart-o" aria-hidden="true"></i>{{$post->likedUser->count()}} people like this
                   @else
                   <a href="#" onclick="document.getElementById('like-form-{{$post->id}}').submit();"> <i class="fa fa-heart" aria-hidden="true" style="color: {{Auth::user()->likedPosts()->where('post_id', $post->id)->count() > 0 ? 'red' : ''}}"></i></a>
-                      {{$post->likedUser->count()}} people like this
+                      @if (Auth::user()->role_id == 1) 
+                        <a href="{{ route('admin.post.like.users', $post->id) }}">{{$post->likedUser->count()}} people</a>
+                      @else
+                        <a href="{{ route('user.post.like.users', $post->id) }}">{{$post->likedUser->count()}} people</a>
+                      @endif
+                      like this
                   
                       <form action="{{route('post.like',$post->id)}}" method="POST" style="display: none" id="like-form-{{$post->id}}">
                       @csrf

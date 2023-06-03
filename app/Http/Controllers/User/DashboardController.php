@@ -5,6 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -16,7 +19,11 @@ use Auth;
 class DashboardController extends Controller
 {
     public function index(){
-    	return view('user.index');
+    	$posts = Post::where('user_id', Auth::id())->get();
+        $comments = Comment::where('user_id', Auth::id())->latest()->get();
+        $users = User::all();
+        $categories = Category::all();
+   	    return view('user.index', compact('posts','comments','users','categories'));
     }
 
     public function likedPosts() {

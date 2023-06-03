@@ -81,7 +81,7 @@
 			</div>
 				<div class="container">
 				<div class="row justify-content-center">
-                    @foreach($posts as $post)
+                    @foreach($hotPosts as $post)
 					<div class="single-posts col-lg-4 col-sm-4 mb-3">
 						<img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="{{$post->image}}"style="width:1000px; height: 200px;">
 						<div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:white;">{{$post->created_at->diffForHumans()}}</div>
@@ -201,7 +201,7 @@
                 </div>
               </div>
               <div class="meta-text mt-30 text-center">
-                 <h4>Tanzim Chowdhury</h4>
+                 <h4>Tanzim Chowdhury & Mahmuda Akter Munny</h4>
                 <p>Creator</p>
               </div>
             </div>

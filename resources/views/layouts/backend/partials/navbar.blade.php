@@ -32,27 +32,27 @@
                     </li>
                     <li class="active">
                         <a href="{{ route('admin.category.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Categories 
+                            <i class="menu-icon fa fa-solid fa-list"></i>Categories 
                         </a>
                     </li>
                     <li class="active">
                         <a href="{{ route('admin.post.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Posts 
+                            <i class="menu-icon ti-file text-success border-success"></i>Posts 
                         </a>
                     </li>
                     <li class="active">
                         <a href="{{ route('admin.comment.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Comments 
+                            <i class="menu-icon ti-comment-alt text-warning border-warning"></i>Comments 
                         </a>
                     </li>
-                    <li class="active">
+                    <!-- <li class="active">
                         <a href="{{ route('admin.reply-comment.index') }}"> 
                             <i class="menu-icon fa fa-file"></i>Replied Comments 
                         </a>
-                    </li>
-                    <li class="active">
-                        <a href="{{ route('comment-notification.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Notifications 
+                    </li> -->
+                    <li class="active" >
+                        <a href="{{ route('comment-notification.index') }}" > 
+                            <i class="menu-icon fa fa-bell"></i>Notifications 
                         </a>
                     </li>
                 </ul>
@@ -66,7 +66,7 @@
                     <h3 class="menu-title">CMS</h3><!-- /.menu-title -->
                     <li class="active">
                         <a href="{{ route('user.comment.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Comments 
+                            <i class="menu-icon ti-comment-alt text-warning border-warning"></i>Comments 
                         </a>
                     </li>
                     <!-- <li class="active">
@@ -76,12 +76,12 @@
                     </li> -->
                     <li class="active">
                         <a href="{{ route('user.post.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Posts 
+                            <i class="menu-icon ti-file text-success border-success"></i>Posts 
                         </a>
                     </li>
                     <li class="active">
                         <a href="{{ route('comment-notification.index') }}"> 
-                            <i class="menu-icon fa fa-file"></i>Notifications 
+                            <i class="menu-icon fa fa-bell"></i>Notifications 
                         </a>
                     </li>
                 </ul>

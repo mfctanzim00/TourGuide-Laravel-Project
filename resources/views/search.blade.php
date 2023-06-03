@@ -42,7 +42,7 @@
                   @foreach($posts as $post)
                   <div class="single-posts col-lg-4 col-sm-4">
                     <img class="img-fluid" src="{{asset('storage/post/'.$post->image)}}" alt="$post->image">
-                    <div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">10 Jan 2018</div>
+                    <div class="date mt-20 mb-20"style="font-family: 'Gill Sans', sans-serif; color:white;">10 Jan 2018</div>
                     <div class="detail">
                       <a href=" {{ route('post', $post->slug) }} "style="font-family: 'Gill Sans', sans-serif; color:black;">
                         <h4 class="pb-20"style="font-family: 'Gill Sans', sans-serif; color:black;">
@@ -50,7 +50,7 @@
                         </h4>
                       </a>
                       <p style="font-family: 'Gill Sans', sans-serif; color:black;">
-                        !!  $post->body  !!    
+                      {!!  substr(strip_tags($post->body), 0, 200) !!}..<a href="{{ route('post',$post->slug) }}" style="font-size:12px;color:blue;font-family: 'Gill Sans', sans-serif;">See More</a>
                       </p>
                       <p class="footer pt-20">
                         <i class="fa fa-heart-o" aria-hidden="true"></i>

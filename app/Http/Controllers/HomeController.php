@@ -20,7 +20,8 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::latest()->take(6)->where('status', 1)->get();
-        return view('index', compact('posts'));
+        $hotPosts = Post::where('status', 1)->orderBy('view_count', 'desc')->get();
+        return view('index', compact('posts', 'hotPosts'));
     }
 
     public function posts()

@@ -187,7 +187,7 @@ class PostController extends Controller
         else {
             $imageName = $post->image;
         }
-        $post->user_id = Auth::id();
+      //  $post->user_id = Auth::id();
         $post->category_id = $request->category;
         $post->title = $request->title;
         $post->slug = $slug;

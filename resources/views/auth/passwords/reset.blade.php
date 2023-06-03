@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="background-image:url('/frontend/img/High_resolution_wallpaper_background_ID_77700326921.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: cover;font-family: 'Gill Sans', sans-serif;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
